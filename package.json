@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.0",
+    "@sanity/vision": "^3.99.0",
     "next": "14.2.29",
+    "next-sanity": "^7.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "resend": "^6.9.4"
+    "resend": "^6.9.4",
+    "sanity": "^3.99.0",
+    "styled-components": "^6.3.12"
   },
   "devDependencies": {
     "@types/node": "^20",
