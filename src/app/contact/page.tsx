@@ -1,3 +1,5 @@
+import ContactForm from '@/components/ContactForm';
+
 export default function ContactPage() {
   return (
     <>
@@ -28,62 +30,7 @@ export default function ContactPage() {
         <div className="contact-form-wrapper">
           <h2 className="form-title">Send an enquiry</h2>
           <p className="form-subtitle">I&apos;ll respond within 48 hours.</p>
-          <div className="form-row">
-            <div className="form-group">
-              <label className="form-label">First Name</label>
-              <input type="text" className="form-input" placeholder="First name" />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Last Name</label>
-              <input type="text" className="form-input" placeholder="Last name" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="form-label">Email</label>
-            <input type="email" className="form-input" placeholder="you@company.com" />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Organisation</label>
-            <input type="text" className="form-input" placeholder="Company name" />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Enquiry Type</label>
-            <select className="form-select">
-              <option value="" disabled>Select</option>
-              <option>Speaking</option>
-              <option>Moderation</option>
-              <option>Workshop</option>
-              <option>Advisory</option>
-              <option>Media</option>
-              <option>General</option>
-            </select>
-          </div>
-          <div className="form-row">
-            <div className="form-group">
-              <label className="form-label">Event Date</label>
-              <input type="date" className="form-input" />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Budget</label>
-              <select className="form-select">
-                <option value="" disabled>Select</option>
-                <option>Under $5k</option>
-                <option>$5k–$10k</option>
-                <option>$10k–$25k</option>
-                <option>$25k+</option>
-              </select>
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="form-label">Message</label>
-            <textarea className="form-textarea" placeholder="Tell us about your event..."></textarea>
-          </div>
-          <div style={{marginTop:'0.5rem'}}>
-            <button className="btn btn-accent" type="submit">
-              Send Enquiry{' '}
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </button>
-          </div>
+          <ContactForm />
         </div>
       </section>
       <section className="social-strip"><div className="social-inner">

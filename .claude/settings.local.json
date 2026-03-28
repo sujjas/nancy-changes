@@ -12,7 +12,9 @@
       "Bash(python3 -c \":*)",
       "Bash(identify \"/Users/elijahkasujja/Downloads/Nancy website copy/public/logos/\"*.png)",
       "Bash(file \"/Users/elijahkasujja/Downloads/Nancy website copy/public/logos/\"*.png)",
-      "Bash(python3 -c \"from PIL import Image; img=Image.open\\(''/Users/elijahkasujja/Downloads/Nancy website copy/nancy.png''\\); print\\(img.size, img.mode\\)\")"
+      "Bash(python3 -c \"from PIL import Image; img=Image.open\\(''/Users/elijahkasujja/Downloads/Nancy website copy/nancy.png''\\); print\\(img.size, img.mode\\)\")",
+      "WebFetch(domain:nancy-dfx95hk29-sujjas-projects-264515d1.vercel.app)",
+      "WebFetch(domain:nancy-kk.vercel.app)"
     ]
   }
 }

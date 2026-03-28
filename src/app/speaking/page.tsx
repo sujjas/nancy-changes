@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
+import RotatingImage from '@/components/RotatingImage';
 
 export default function SpeakingPage() {
   return (
@@ -16,7 +17,7 @@ export default function SpeakingPage() {
             </Link>
           </div>
         </div></div>
-        <div className="sp-hero-img"><img src="/Nancy15.jpg" alt="Nancy Kacungira" data-parallax="0.15" /></div>
+        <div className="sp-hero-img"><img src="/nancy-6.jpg" alt="Nancy Kacungira" data-parallax="0.15" /></div>
       </section>
 
       <div className="logo-bar">
@@ -101,7 +102,7 @@ export default function SpeakingPage() {
               <div className="format-item reveal"><div className="format-left"><span className="format-dot"></span><span className="format-name">MC &amp; Hosting</span></div><span className="format-tag">Custom</span><span className="line-draw"></span></div>
             </div>
           </div>
-          <div className="formats-image reveal"><img src="/Nancy02.jpg" alt="Nancy moderating" /></div>
+          <div className="formats-image reveal"><RotatingImage /></div>
         </div>
       </div></section>
 

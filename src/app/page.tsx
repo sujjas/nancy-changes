@@ -84,7 +84,7 @@ export default function HomePage() {
               <p>She now applies the communication skills and narrative awareness she developed in international broadcast to help senior professionals and organisations communicate with the authority their work deserves.</p>
               <p>She brings the same discipline she applied in high-pressure newsrooms: where clarity, credibility, and precision were non-negotiable; directly into the training room: practical, scenario-based, and immediately transferable.</p>
             </div>
-            <Link href="/about" className="bio-cta">More about Nancy →</Link>
+            <Link href="/about" className="bio-cta">More about Nancy{' '}<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></Link>
           </div>
           <div className="bio-image-col">
             <img src="/nancy-cutout.png" alt="Nancy Kacungira" />

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
+import { articles, programmes } from './data';
 
 export default function LibraryPage() {
   return (
@@ -11,7 +12,7 @@ export default function LibraryPage() {
           <p className="lib-hero-desc">Articles, talks, resources, and courses on communication, leadership, and narrative.</p>
           <div className="lib-hero-cta">
             <Link href="/contact" className="btn btn-dark btn-lg">
-              Explore Library{' '}
+              Explore Resources{' '}
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </Link>
           </div>
@@ -19,7 +20,7 @@ export default function LibraryPage() {
         <div className="lib-hero-img"><img src="/DSC00256.jpg" alt="Nancy Kacungira at BBC" /></div>
       </section>
 
-      <section className="section-cream"><div className="container">
+      <section className="section-cream" id="articles"><div className="container">
         <p className="section-eyebrow reveal">Articles</p>
         <h2 className="section-heading reveal">Thought leadership in <em>writing</em></h2>
         <div className="filter-tabs reveal">
@@ -29,39 +30,19 @@ export default function LibraryPage() {
           <button className="filter-tab">Africa</button>
         </div>
         <div className="articles-grid reveal-stagger">
-          <div className="article-card reveal">
-            <div className="article-card-inner">
-              <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
-              <div className="article-body">
-                <span className="article-tag">Communication</span>
-                <h3 className="article-title">The Art of Saying No Without Losing Trust</h3>
-                <p className="article-excerpt">Why boundary-setting is a leadership skill.</p>
-                <a href="#" className="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          {articles.map((article) => (
+            <Link key={article.slug} href={`/library/articles/${article.slug}`} className="article-card reveal" style={{textDecoration:'none',display:'block'}}>
+              <div className="article-card-inner">
+                <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
+                <div className="article-body">
+                  <span className="article-tag">{article.tag}</span>
+                  <h3 className="article-title">{article.title}</h3>
+                  <p className="article-excerpt">{article.excerpt}</p>
+                  <span className="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="article-card reveal">
-            <div className="article-card-inner">
-              <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
-              <div className="article-body">
-                <span className="article-tag">Africa</span>
-                <h3 className="article-title">Can Africa Limit Emissions and Provide Jobs?</h3>
-                <p className="article-excerpt">Energy access vs climate commitments.</p>
-                <a href="#" className="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-              </div>
-            </div>
-          </div>
-          <div className="article-card reveal">
-            <div className="article-card-inner">
-              <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
-              <div className="article-body">
-                <span className="article-tag">Narrative</span>
-                <h3 className="article-title">Who Gets to Tell Africa&apos;s Story?</h3>
-                <p className="article-excerpt">Power dynamics of narrative framing.</p>
-                <a href="#" className="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-              </div>
-            </div>
-          </div>
+            </Link>
+          ))}
         </div>
       </div></section>
 
@@ -92,7 +73,7 @@ export default function LibraryPage() {
         <p className="section-eyebrow reveal">Resources</p>
         <h2 className="section-heading reveal">Tools you can use <em>today</em></h2>
         <div className="resources-list">
-          <div className="resource-item reveal">
+          <a href="#" className="resource-item reveal" style={{textDecoration:'none'}}>
             <div className="resource-left">
               <div className="resource-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -102,9 +83,9 @@ export default function LibraryPage() {
               </div>
               <div><p className="resource-title">Narrative Clarity Toolkit</p><p className="resource-desc">12-page guide to structuring your message.</p></div>
             </div>
-            <a href="#" className="resource-action">Download <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-          <div className="resource-item reveal">
+            <span className="resource-action">Download <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a href="#" className="resource-item reveal" style={{textDecoration:'none'}}>
             <div className="resource-left">
               <div className="resource-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -113,17 +94,17 @@ export default function LibraryPage() {
               </div>
               <div><p className="resource-title">Communication Diagnostic</p><p className="resource-desc">5-minute self-assessment quiz.</p></div>
             </div>
-            <a href="#" className="resource-action">Take quiz <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
+            <span className="resource-action">Take quiz <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
         </div>
       </div></section>
 
-      <section className="section-dark" style={{paddingTop:0}}><div className="container">
+      <section className="section-dark" id="programmes" style={{paddingTop:0}}><div className="container">
         <p className="section-eyebrow reveal">Courses and learning</p>
         <h2 className="section-heading reveal">Programmes designed to <em>transform</em></h2>
         <p className="section-desc reveal" style={{marginBottom:'2rem'}}>Each course blends Nancy&apos;s real-world experience with practical frameworks you can apply immediately.</p>
         <div className="courses-grid">
-          <div className="course-card reveal-left">
+          <Link href="/library/programmes/narrative-mastery-for-leaders" className="course-card reveal-left" style={{textDecoration:'none'}}>
             <div className="course-thumb">
               <img src="/Nancy15.jpg" alt="Course" />
               <span className="course-badge course-badge-live">Live Cohort</span>
@@ -147,11 +128,11 @@ export default function LibraryPage() {
               <p className="course-desc">A deep-dive programme for executives and senior communicators. Learn to craft narratives that shift perception, build trust, and drive action — using the same frameworks Nancy applies in newsrooms and boardrooms.</p>
               <div className="course-footer">
                 <div className="course-price">$1,200 <span className="course-price-note">/ per person</span></div>
-                <a href="#" className="btn btn-accent">Enrol Now <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+                <span className="btn btn-accent">Learn More <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
               </div>
             </div>
-          </div>
-          <div className="course-card reveal-right">
+          </Link>
+          <Link href="/library/programmes/strategic-speaking-foundations" className="course-card reveal-right" style={{textDecoration:'none'}}>
             <div className="course-thumb">
               <img src="/Nancy07.jpg" alt="Course" />
               <span className="course-badge course-badge-self">Self-Paced</span>
@@ -175,10 +156,10 @@ export default function LibraryPage() {
               <p className="course-desc">Build confidence and presence from the ground up. This self-paced programme covers vocal delivery, audience psychology, structure, and storytelling — essential skills for anyone who needs to be heard.</p>
               <div className="course-footer">
                 <div className="course-price">$450 <span className="course-price-note">/ lifetime access</span></div>
-                <a href="#" className="btn btn-dark">Start Learning <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+                <span className="btn btn-accent">Learn More <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div></section>
 

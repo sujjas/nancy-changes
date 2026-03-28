@@ -26,7 +26,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section-white"><div className="container bio-section">
-        <div className="bio-image reveal"><img src="/Nancy02.jpg" alt="Nancy portrait" /></div>
+        <div className="bio-image reveal"><img src="/nancy-9.jpg" alt="Nancy portrait" /></div>
         <div className="bio-text">
           <p className="section-eyebrow reveal">The Full Story</p>
           <h2 className="section-heading reveal">From Kampala&apos;s airwaves to the <em>world stage</em></h2>

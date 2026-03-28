@@ -21,15 +21,15 @@ export default function Footer() {
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
             <Link href="/speaking">Speaking</Link>
-            <Link href="/library">Library</Link>
+            <Link href="/library">Resources</Link>
             <Link href="/contact">Contact</Link>
           </div>
         </div>
         <div className="footer-bottom">
           <div className="footer-social">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">X</a>
+            <a href="https://www.instagram.com/kacungira/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/nkacungira" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://x.com/kacungira" target="_blank" rel="noopener noreferrer">X</a>
           </div>
           <p className="footer-copy">&copy; 2026 Nancy Kacungira. All rights reserved</p>
         </div>
