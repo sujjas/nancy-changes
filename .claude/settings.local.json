@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx skills:*)",
+      "WebFetch(domain:www.agentation.com)",
+      "Bash(npx create-next-app@latest . --typescript --no-tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(npx create-next-app@latest . --typescript --no-tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git --yes --skip-install)",
+      "Bash(npm run:*)",
+      "Bash(find '/Users/elijahkasujja/Downloads/Nancy website copy' -type d -name logo* -o -type d -name logos*)",
+      "Bash(find '/Users/elijahkasujja/Downloads/Nancy website copy' -name *.svg -o -name *.png -o -name *.jpg)",
+      "Bash(python3 -c \":*)",
+      "Bash(identify \"/Users/elijahkasujja/Downloads/Nancy website copy/public/logos/\"*.png)",
+      "Bash(file \"/Users/elijahkasujja/Downloads/Nancy website copy/public/logos/\"*.png)",
+      "Bash(python3 -c \"from PIL import Image; img=Image.open\\(''/Users/elijahkasujja/Downloads/Nancy website copy/nancy.png''\\); print\\(img.size, img.mode\\)\")"
+    ]
+  }
+}

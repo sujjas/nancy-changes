@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nancy Kacungira — Framer Design Tokens & Components Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #2A1F23;
+    --accent: #70251A;
+    --accent-muted: #8B5349;
+    --primary-text: #4B1911;
+    --italic-text: #95838A;
+    --body-text: #666666;
+    --inactive-text: rgba(41,14,10,0.4);
+    --inactive-body: rgba(149,131,138,0.4);
+    --cream: #F7F7F4;
+    --white: #FFFFFF;
+    --light: #F8F7F5;
+    --muted-on-dark: rgba(255,255,255,0.5);
+    --overlay-dark: rgba(42,31,35,0.6);
+    --border-light: rgba(75,25,17,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--body-text);
+    background: var(--white);
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--dark);
+    padding: 5rem 4rem;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .cover-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .cover h1 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 400;
+    color: var(--light);
+    line-height: 1.08;
+    letter-spacing: -1.3px;
+    margin-bottom: 0.5rem;
+  }
+  .cover h1 em {
+    color: var(--italic-text);
+    font-style: italic;
+  }
+  .cover .cover-sub {
+    font-size: 18px;
+    color: var(--muted-on-dark);
+    margin-top: 1rem;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .section-title {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    color: var(--primary-text);
+    letter-spacing: -0.96px;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+  .section-desc {
+    font-size: 18px;
+    color: var(--body-text);
+    max-width: 640px;
+    margin-bottom: 3rem;
+    line-height: 1.55;
+  }
+
+  h3 {
+    font-family: 'Newsreader', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--primary-text);
+    letter-spacing: -0.56px;
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+  }
+  h3:first-of-type { margin-top: 0; }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--italic-text);
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  /* Color Swatches */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border-light);
+    margin-bottom: 2rem;
+  }
+  .color-card {
+    background: var(--white);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .color-swatch {
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px 14px;
+  }
+  .color-swatch span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.85);
+    color: var(--dark);
+  }
+  .color-swatch.is-light span {
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+  }
+  .color-info {
+    padding: 14px;
+  }
+  .color-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary-text);
+  }
+  .color-usage {
+    font-size: 13px;
+    color: var(--italic-text);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* Typography Specimens */
+  .type-specimen {
+    background: var(--cream);
+    padding: 2rem 2.25rem;
+    margin-bottom: 1px;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 2rem;
+    align-items: center;
+  }
+  .type-preview { min-width: 0; }
+  .type-meta {
+    font-size: 13px;
+    color: var(--italic-text);
+    line-height: 1.65;
+  }
+  .type-meta strong {
+    color: var(--primary-text);
+    font-weight: 700;
+  }
+  .type-meta code {
+    font-size: 12px;
+    background: rgba(112,37,26,0.06);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* Spacing Tokens */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  .token-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--italic-text);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border-light);
+  }
+  .token-table td {
+    padding: 14px 16px;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--body-text);
+  }
+  .token-table td:first-child {
+    font-weight: 700;
+    color: var(--primary-text);
+    width: 200px;
+  }
+  .token-table td code {
+    font-size: 13px;
+    background: rgba(112,37,26,0.06);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .token-visual {
+    height: 8px;
+    background: var(--accent);
+    border-radius: 4px;
+    margin-top: 6px;
+    opacity: 0.3;
+  }
+
+  /* Breakpoints */
+  .bp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border-light);
+    margin-bottom: 2rem;
+  }
+  .bp-card {
+    background: var(--cream);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .bp-card .bp-icon {
+    font-size: 28px;
+    margin-bottom: 0.5rem;
+  }
+  .bp-card .bp-label {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary-text);
+    margin-bottom: 4px;
+  }
+  .bp-card .bp-width {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .bp-card .bp-desc {
+    font-size: 13px;
+    color: var(--italic-text);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* Component Previews */
+  .component-preview {
+    background: var(--cream);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .component-preview.dark-bg {
+    background: var(--dark);
+  }
+  .component-label {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--italic-text);
+    background: var(--white);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .dark-bg .component-label {
+    background: rgba(255,255,255,0.1);
+    color: var(--muted-on-dark);
+  }
+
+  /* Button Previews */
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .btn {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: 110px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-lg {
+    font-size: 21px;
+    padding: 20px 42px;
+  }
+  .btn-md {
+    font-size: 17px;
+    padding: 16px 36px;
+  }
+  .btn-accent {
+    background: var(--accent);
+    color: var(--light);
+  }
+  .btn-accent:hover {
+    box-shadow: 0 8px 28px rgba(112,37,26,0.28);
+  }
+  .btn-dark {
+    background: var(--dark);
+    color: var(--light);
+  }
+  .btn-dark:hover {
+    background: #3A2F33;
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--dark);
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid rgba(248,247,245,0.3);
+    color: var(--light);
+  }
+
+  /* Card Previews */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-light);
+  }
+  .card-demo {
+    background: var(--cream);
+    padding: 2.75rem 2.25rem;
+    transition: background 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-demo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .card-demo:hover {
+    background: var(--white);
+  }
+  .card-demo:hover::after {
+    width: 100%;
+  }
+  .card-num {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-family: 'Newsreader', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--primary-text);
+    letter-spacing: -0.56px;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .card-desc {
+    font-size: 15px;
+    color: var(--body-text);
+    line-height: 1.55;
+  }
+
+  /* Nav Preview */
+  .nav-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+  }
+  .nav-logo {
+    font-family: 'Newsreader', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--primary-text);
+    letter-spacing: -0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 15px;
+    color: rgba(0,0,0,0.6);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .nav-links a.active {
+    color: var(--primary-text);
+  }
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--accent);
+  }
+  .nav-cta {
+    font-size: 15px;
+    padding: 10px 28px;
+  }
+
+  /* Footer Preview */
+  .footer-preview {
+    background: var(--dark);
+    padding: 2.5rem 2rem;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(248,247,245,0.08);
+    margin-bottom: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Newsreader', serif;
+    font-size: 1.375rem;
+    font-weight: 500;
+    color: var(--light);
+  }
+  .footer-contact-row {
+    display: flex;
+    gap: 2rem;
+    font-size: 14px;
+    color: var(--muted-on-dark);
+  }
+  .footer-contact-row strong {
+    color: var(--light);
+    font-size: 16.5px;
+    font-weight: 500;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-size: 13px;
+    color: var(--muted-on-dark);
+  }
+  .social-pills {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .social-pill {
+    font-size: 16px;
+    padding: 12px 28px;
+    border: 1px solid rgba(248,247,245,0.2);
+    border-radius: 110px;
+    color: var(--light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .social-pill:hover {
+    background: rgba(248,247,245,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Stat Strip */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--accent);
+    text-align: center;
+    padding: 2.5rem 0;
+  }
+  .stat-item {
+    position: relative;
+    padding: 1rem;
+  }
+  .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(248,247,245,0.2);
+  }
+  .stat-number {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: rgba(248,247,245,0.7);
+    margin-top: 6px;
+  }
+
+  /* Testimonial Preview */
+  .testimonial-preview {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .testimonial-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .testimonial-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 110px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--light);
+    transition: transform 0.3s ease;
+  }
+  .testimonial-btn:hover { transform: scale(1.06); }
+  .testimonial-btn.prev { background: var(--accent-muted); }
+  .testimonial-btn.next { background: var(--accent); }
+  .testimonial-quote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--primary-text);
+    line-height: 1.45;
+    letter-spacing: -0.56px;
+  }
+  .testimonial-author {
+    margin-top: 1.25rem;
+    font-size: 15px;
+    color: var(--italic-text);
+  }
+  .testimonial-author strong {
+    color: var(--primary-text);
+    font-weight: 700;
+  }
+
+  /* Audience Card (dark) */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(248,247,245,0.06);
+  }
+  .audience-card {
+    background: var(--dark);
+    padding: 2rem;
+    text-align: center;
+  }
+  .audience-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(112,37,26,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 20px;
+  }
+  .audience-title {
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+  }
+  .audience-desc {
+    font-size: 14px;
+    color: var(--muted-on-dark);
+    line-height: 1.5;
+  }
+
+  /* Form Preview */
+  .form-preview {
+    max-width: 480px;
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin-bottom: 6px;
+    transition: color 0.3s ease;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    background: var(--white);
+    border: 1.5px solid rgba(75,25,17,0.08);
+    border-radius: 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+    color: var(--body-text);
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--accent);
+  }
+  .form-group .focus-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  .form-group:focus-within .focus-line {
+    width: 100%;
+  }
+  .form-group:focus-within label {
+    color: var(--accent);
+  }
+
+  /* Animation Specs */
+  .anim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border-light);
+    margin-bottom: 2rem;
+  }
+  .anim-card {
+    background: var(--cream);
+    padding: 1.75rem;
+  }
+  .anim-card .anim-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary-text);
+    margin-bottom: 0.25rem;
+  }
+  .anim-card .anim-type {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+  .anim-type.builtin {
+    background: rgba(112,37,26,0.08);
+    color: var(--accent);
+  }
+  .anim-type.code {
+    background: rgba(42,31,35,0.08);
+    color: var(--dark);
+  }
+  .anim-card .anim-desc {
+    font-size: 14px;
+    color: var(--body-text);
+    line-height: 1.5;
+  }
+  .anim-card .anim-spec {
+    font-size: 13px;
+    color: var(--italic-text);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  /* Checklist */
+  .checklist-page {
+    margin-bottom: 2.5rem;
+  }
+  .checklist-page h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--primary-text);
+    font-size: 16px;
+  }
+  .checklist {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .checklist li {
+    font-size: 15px;
+    padding: 10px 14px;
+    color: var(--body-text);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .checklist li::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid rgba(75,25,17,0.15);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* Code Block */
+  .code-block {
+    background: var(--dark);
+    color: var(--light);
+    padding: 1.75rem 2rem;
+    border-radius: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .code-block .tag { color: #E88B7A; }
+  .code-block .attr { color: #95838A; }
+  .code-block .val { color: #C4A67A; }
+  .code-block .comment { color: rgba(255,255,255,0.3); }
+
+  /* Note callout */
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--cream);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .note strong { color: var(--primary-text); }
+
+  /* Image Assignment Table */
+  .img-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .img-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--italic-text);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border-light);
+  }
+  .img-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 15px;
+    vertical-align: top;
+  }
+  .img-table td:first-child {
+    font-weight: 700;
+    color: var(--primary-text);
+    white-space: nowrap;
+  }
+  .img-table .img-desc {
+    font-size: 13px;
+    color: var(--italic-text);
+    display: block;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .cover { padding: 3rem 2rem; }
+    .type-specimen { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .bp-grid { grid-template-columns: 1fr 1fr; }
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .audience-grid { grid-template-columns: 1fr 1fr; }
+    .anim-grid { grid-template-columns: 1fr; }
+    .checklist { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="container">
+    <div class="cover-eyebrow">Framer Design Guide</div>
+    <h1>Nancy Kacungira<br><em>Design Tokens & Components</em></h1>
+    <p class="cover-sub">nancykacungira.com — All tokens, typography, components, and animation specs for Framer implementation.</p>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 1. COLORS -->
+<section>
+  <div class="section-number">01</div>
+  <h2 class="section-title">Color Tokens</h2>
+  <p class="section-desc">Add these as Color Styles in Framer via the Styles panel. Each swatch shows the exact hex value to use.</p>
+
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-swatch is-light" style="background:#2A1F23"><span>#2A1F23</span></div>
+      <div class="color-info"><div class="color-name">Dark</div><div class="color-usage">Dark sections, footer, nav on dark</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch is-light" style="background:#70251A"><span>#70251A</span></div>
+      <div class="color-info"><div class="color-name">Accent</div><div class="color-usage">CTAs, buttons, stat strip, highlights</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch is-light" style="background:#8B5349"><span>#8B5349</span></div>
+      <div class="color-info"><div class="color-name">Accent Muted</div><div class="color-usage">Secondary button states (72% opacity)</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch is-light" style="background:#4B1911"><span>#4B1911</span></div>
+      <div class="color-info"><div class="color-name">Primary Text</div><div class="color-usage">Headings, primary text</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#95838A"><span>#95838A</span></div>
+      <div class="color-info"><div class="color-name">Italic Text</div><div class="color-usage">Italic heading words, muted body</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#666666"><span>#666666</span></div>
+      <div class="color-info"><div class="color-name">Body Text</div><div class="color-usage">Body paragraphs (black at 60%)</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#F7F7F4; border: 1px solid rgba(0,0,0,0.06)"><span>#F7F7F4</span></div>
+      <div class="color-info"><div class="color-name">Cream</div><div class="color-usage">Secondary bg, cards, stat cards</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#FFFFFF; border: 1px solid rgba(0,0,0,0.06)"><span>#FFFFFF</span></div>
+      <div class="color-info"><div class="color-name">White</div><div class="color-usage">Primary page background</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#F8F7F5; border: 1px solid rgba(0,0,0,0.06)"><span>#F8F7F5</span></div>
+      <div class="color-info"><div class="color-name">Light</div><div class="color-usage">Text on dark backgrounds</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch is-light" style="background:rgba(42,31,35,0.6)"><span>rgba(42,31,35,0.6)</span></div>
+      <div class="color-info"><div class="color-name">Overlay Dark</div><div class="color-usage">CTA image overlays</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:rgba(75,25,17,0.06); border: 1px solid rgba(0,0,0,0.06)"><span>rgba(75,25,17,0.06)</span></div>
+      <div class="color-info"><div class="color-name">Border Light</div><div class="color-usage">Divider lines, input borders</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch is-light" style="background:linear-gradient(135deg, #2A1F23, #4B1911)"><span>Inactive States</span></div>
+      <div class="color-info"><div class="color-name">Inactive Text / Body</div><div class="color-usage">rgba(41,14,10,0.4) / rgba(149,131,138,0.4)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TYPOGRAPHY -->
+<section>
+  <div class="section-number">02</div>
+  <h2 class="section-title">Typography Scale</h2>
+  <p class="section-desc">Add these as Text Styles in Framer. All fonts from Google Fonts. DM Sans is replaced by Atkinson Hyperlegible throughout.</p>
+
+  <h3>Heading Styles — Newsreader</h3>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-family:'Newsreader',serif; font-size:clamp(36px,5vw,65px); font-weight:400; color:var(--primary-text); line-height:1.08; letter-spacing:-1.3px;">
+        Strategic <em style="color:var(--italic-text)">communication</em>
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Hero Title</strong><br>
+      Newsreader · <code>65px</code> · 400<br>
+      Line-height: 70px · Tracking: -1.3px<br>
+      <em>Hero headings, CTA titles</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-family:'Newsreader',serif; font-size:clamp(28px,4vw,48px); font-weight:400; color:var(--primary-text); line-height:1.2; letter-spacing:-0.96px;">
+        Speaking <em style="color:var(--italic-text)">Topics</em>
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Section Title</strong><br>
+      Newsreader · <code>48px</code> · 400<br>
+      Line-height: 1.2 · Tracking: -0.96px<br>
+      <em>Section headings (clamp for responsive)</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-family:'Newsreader',serif; font-size:28px; font-weight:400; color:var(--primary-text); letter-spacing:-0.56px;">
+        Narrative Strategy & Brand Voice
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Card Title</strong><br>
+      Newsreader · <code>28px</code> · 400<br>
+      Tracking: -0.56px<br>
+      <em>Service/topic card titles</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-family:'Newsreader',serif; font-size:22px; font-weight:400; color:var(--primary-text); letter-spacing:-0.56px;">
+        Media & Communications Training
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Card Title Sm</strong><br>
+      Newsreader · <code>22–24px</code> · 400<br>
+      Tracking: -0.56px<br>
+      <em>Smaller card headings</em>
+    </div>
+  </div>
+
+  <h3>Body Styles — Atkinson Hyperlegible</h3>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-size:21px; font-weight:400; color:var(--body-text); line-height:1.3;">
+        Nancy Kacungira is a BBC News Lead Presenter, Foreign Correspondent, and strategic communication expert who helps organizations shape the narratives that matter.
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Body Large</strong><br>
+      Atkinson Hyperlegible · <code>21px</code> · 400<br>
+      Line-height: 1.2–1.3<br>
+      <em>Hero descriptions, bio text</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-size:18px; font-weight:400; color:var(--body-text); line-height:1.5;">
+        With over a decade of experience in journalism and media training, she brings a unique perspective to every engagement — bridging the gap between complex topics and compelling storytelling.
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Body</strong><br>
+      Atkinson Hyperlegible · <code>18px</code> · 400<br>
+      Line-height: 1.5<br>
+      <em>Card descriptions, body copy</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-size:15px; font-weight:400; color:var(--body-text); line-height:1.5;">
+        Published in The Guardian · 5 min read · March 2026
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Body Small</strong><br>
+      Atkinson Hyperlegible · <code>15–16px</code> · 400<br>
+      Line-height: 1.5<br>
+      <em>Meta text, captions</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--italic-text);">
+        What Nancy Offers
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>Eyebrow</strong><br>
+      Atkinson Hyperlegible · <code>13px</code> · 500<br>
+      UPPERCASE · Tracking: 0.12em<br>
+      <em>Section labels</em>
+    </div>
+  </div>
+
+  <h3>UI Styles — Atkinson Hyperlegible <span style="font-size:16px; color:var(--accent); font-style:italic;">(replaces DM Sans)</span></h3>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-size:21px; font-weight:400; color:var(--body-text);">
+        Instagram &nbsp;&nbsp; Facebook &nbsp;&nbsp; X (Twitter)
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>UI / Nav</strong><br>
+      Atkinson Hyperlegible · <code>21px</code> · 400<br>
+      <em>Footer nav, social buttons</em>
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-preview">
+      <div style="font-size:16.5px; font-weight:700; color:var(--body-text);">
+        +256 700 998 888 &nbsp;&nbsp; info@nancykacungira.com
+      </div>
+    </div>
+    <div class="type-meta">
+      <strong>UI Small</strong><br>
+      Atkinson Hyperlegible · <code>16.5px</code> · 500<br>
+      <em>Contact values, meta</em>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Framer note:</strong> Atkinson Hyperlegible now replaces DM Sans for all UI elements (nav, footer links, social buttons, contact text). This simplifies the font stack to two families: Newsreader for headings and Atkinson Hyperlegible for everything else.
+  </div>
+</section>
+
+<!-- 3. SPACING -->
+<section>
+  <div class="section-number">03</div>
+  <h2 class="section-title">Spacing & Layout</h2>
+  <p class="section-desc">Reference values for page structure, section spacing, and component dimensions.</p>
+
+  <table class="token-table">
+    <thead>
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Page Max Width</td><td><code>1440px</code></td><td>Outer page container</td></tr>
+      <tr><td>Content Width</td><td><code>1360px</code></td><td>Inner content constraint</td></tr>
+      <tr><td>Page Margin</td><td><code>5.75%</code> (83px at 1440)</td><td>Horizontal page padding</td></tr>
+      <tr><td>Section Padding</td><td><code>7rem</code> (112px)</td><td>Vertical section spacing</td></tr>
+      <tr><td>Grid Gap (cards)</td><td><code>1px</code></td><td>Card grids — bg acts as divider</td></tr>
+      <tr><td>Grid Gap (spaced)</td><td><code>13px</code></td><td>Stat/impact card grids</td></tr>
+      <tr><td>Card Padding</td><td><code>44px 36px</code></td><td>Inner card padding</td></tr>
+      <tr><td>Card Radius</td><td><code>0px</code></td><td>Sharp edges on all cards</td></tr>
+      <tr><td>Image Radius</td><td><code>0px</code></td><td>Sharp edges on all images</td></tr>
+      <tr><td>Button Radius</td><td><code>110px</code></td><td>Full pill shape</td></tr>
+      <tr><td>Nav Height</td><td><code>~80px</code></td><td>Fixed navbar height</td></tr>
+      <tr><td>CTA Height</td><td><code>600px</code> (480px mobile)</td><td>Full-width CTA sections</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Responsive Breakpoints</h3>
+  <div class="bp-grid">
+    <div class="bp-card">
+      <div class="bp-icon">🖥</div>
+      <div class="bp-label">Desktop</div>
+      <div class="bp-width">> 1080px</div>
+      <div class="bp-desc">Full layout, all columns active</div>
+    </div>
+    <div class="bp-card">
+      <div class="bp-icon">📱</div>
+      <div class="bp-label">Tablet</div>
+      <div class="bp-width">768–1080px</div>
+      <div class="bp-desc">Hero stacks, 2-col grids, sticky → static</div>
+    </div>
+    <div class="bp-card">
+      <div class="bp-icon">📲</div>
+      <div class="bp-label">Mobile</div>
+      <div class="bp-width">< 768px</div>
+      <div class="bp-desc">Hamburger nav, 1-col, footer stacks</div>
+    </div>
+    <div class="bp-card">
+      <div class="bp-icon">📟</div>
+      <div class="bp-label">Small</div>
+      <div class="bp-width">< 480px</div>
+      <div class="bp-desc">Stats 1-col, nav wraps, reduced padding</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. COMPONENTS -->
+<section>
+  <div class="section-number">04</div>
+  <h2 class="section-title">Components</h2>
+  <p class="section-desc">Visual examples of every shared component. Build these in Framer first, then compose pages from them.</p>
+
+  <!-- NAV -->
+  <h3>Navigation Bar</h3>
+  <div class="component-preview" style="padding: 0; overflow: hidden;">
+    <div class="component-label">Shared</div>
+    <div class="nav-preview">
+      <div class="nav-logo">Nancy Kacungira</div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Speaking</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <a class="btn btn-accent btn-md nav-cta">Book Nancy</a>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Variants needed:</strong> Default (white/blur bg) and Dark Hero (light text, transparent bg — used on About page). Scroll triggers bg transition.
+  </div>
+
+  <!-- BUTTONS -->
+  <h3>Buttons — 6 Variants</h3>
+  <div class="component-preview">
+    <div class="component-label">Shared</div>
+    <div class="btn-row" style="margin-bottom:1.5rem;">
+      <a class="btn btn-accent btn-lg">Book Nancy</a>
+      <a class="btn btn-accent btn-md">Learn More</a>
+      <a class="btn btn-dark btn-md">View All Topics</a>
+      <a class="btn btn-white btn-md" style="border: 1px solid var(--border-light);">Get in Touch</a>
+    </div>
+  </div>
+  <div class="component-preview dark-bg">
+    <div class="component-label">On Dark</div>
+    <div class="btn-row">
+      <a class="btn btn-white btn-lg">Get in Touch</a>
+      <a class="btn btn-outline btn-md">View Speaking Reel</a>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <h3>Topic / Service Cards</h3>
+  <div class="card-grid">
+    <div class="card-demo">
+      <div class="card-num">01</div>
+      <div class="card-title">Narrative Strategy & Brand Voice</div>
+      <div class="card-desc">Crafting authentic narratives that resonate with audiences and build lasting brand identity.</div>
+    </div>
+    <div class="card-demo">
+      <div class="card-num">02</div>
+      <div class="card-title">Media & Communications Training</div>
+      <div class="card-desc">Equipping leaders and teams with the tools to communicate confidently in any media environment.</div>
+    </div>
+    <div class="card-demo">
+      <div class="card-num">03</div>
+      <div class="card-title">Event Hosting & Moderation</div>
+      <div class="card-desc">Bringing energy, preparation, and editorial sharpness to panels, summits, and conferences.</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Hover:</strong> Background transitions from Cream → White, and a 3px Accent line grows from left to right at the bottom. Use Framer's built-in hover state.
+  </div>
+
+  <!-- STAT STRIP -->
+  <h3>Stats Strip</h3>
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Events Hosted</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">40+</div>
+      <div class="stat-label">Countries</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">50K+</div>
+      <div class="stat-label">Audience Reached</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Animation:</strong> Numbers count from 0 on scroll into view. Requires a <strong>code override</strong> — IntersectionObserver at threshold 0.5, counting in steps of target/40 at 30ms intervals.
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <h3>Testimonial Carousel</h3>
+  <div class="component-preview">
+    <div class="component-label">Shared</div>
+    <div class="testimonial-preview">
+      <div class="testimonial-nav">
+        <button class="testimonial-btn prev">←</button>
+        <button class="testimonial-btn next">→</button>
+      </div>
+      <div>
+        <div class="testimonial-quote">
+          "Nancy brought an extraordinary combination of intelligence, warmth, and journalistic rigour to our summit. She didn't just host — she elevated every conversation on stage."
+        </div>
+        <div class="testimonial-author">
+          <strong>Sarah Johnson</strong> — World Economic Forum
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Behavior:</strong> Single-card crossfade (opacity 0.6s + translateY 10px→0). Auto-rotates every 6 seconds. Prev button uses Accent Muted, Next uses Accent.
+  </div>
+
+  <!-- AUDIENCE CARDS (DARK) -->
+  <h3>Audience Cards (Dark Background)</h3>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-icon">🏢</div>
+      <div class="audience-title">Corporates</div>
+      <div class="audience-desc">Leadership retreats, town halls, and brand events</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">🌍</div>
+      <div class="audience-title">International Orgs</div>
+      <div class="audience-desc">UN agencies, NGOs, and development forums</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">🎓</div>
+      <div class="audience-title">Universities</div>
+      <div class="audience-desc">Commencements, guest lectures, workshops</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">📡</div>
+      <div class="audience-title">Media</div>
+      <div class="audience-desc">Newsrooms, journalism conferences, panels</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Icon circles:</strong> 48px, background rgba(112,37,26,0.18). Cards reveal with stagger from alternating sides (translateX ±40px).
+  </div>
+
+  <!-- FOOTER -->
+  <h3>Footer</h3>
+  <div class="footer-preview">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Nancy Kacungira</div>
+      </div>
+      <div class="footer-contact-row">
+        <div>
+          <strong>+256 700 998 888</strong><br>
+          Available Mon–Fri, 9am–5pm EAT
+        </div>
+        <div>
+          <strong>info@nancykacungira.com</strong><br>
+          Typically responds within 48 hours
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Nancy Kacungira. All rights reserved.</div>
+      <div class="social-pills">
+        <a class="social-pill" href="#">Instagram</a>
+        <a class="social-pill" href="#">Facebook</a>
+        <a class="social-pill" href="#">X</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <h3>Contact Form</h3>
+  <div class="component-preview">
+    <div class="component-label">Contact</div>
+    <div class="form-preview">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your full name">
+        <div class="focus-line"></div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@company.com">
+        <div class="focus-line"></div>
+      </div>
+      <div class="form-group">
+        <label>Inquiry Type</label>
+        <select>
+          <option>Speaking Engagement</option>
+          <option>Media Training</option>
+          <option>Event Hosting</option>
+          <option>Other</option>
+        </select>
+        <div class="focus-line"></div>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea rows="4" placeholder="Tell Nancy about your event or project..."></textarea>
+        <div class="focus-line"></div>
+      </div>
+      <a class="btn btn-accent btn-lg" style="margin-top:0.5rem;">Send Message</a>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Focus animation:</strong> 2px accent underline grows from center outward on :focus-within. Labels transition to accent color. Requires code override or CSS embed in Framer.
+  </div>
+</section>
+
+<!-- 5. ANIMATIONS -->
+<section>
+  <div class="section-number">05</div>
+  <h2 class="section-title">Animation & Interactions</h2>
+  <p class="section-desc">Split between Framer's built-in animations and those requiring custom code overrides.</p>
+
+  <h3>Built-in (Framer Appearance / Hover)</h3>
+  <div class="anim-grid">
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Scroll Reveal</div>
+      <div class="anim-desc">Fade in + move up on scroll into view.</div>
+      <div class="anim-spec">Appear → Fade In, Move Up 28px, 0.8s ease</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Stagger Children</div>
+      <div class="anim-desc">Sequential reveal of card grids.</div>
+      <div class="anim-spec">Delay: 0.07s per child item</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Button Hover</div>
+      <div class="anim-desc">Subtle lift effect on all buttons.</div>
+      <div class="anim-spec">translateY(-2px) + drop shadow</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Card Hover</div>
+      <div class="anim-desc">Lift + background change + accent line.</div>
+      <div class="anim-spec">translateY(-3px), bg Cream→White, 3px bottom line</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Parallax</div>
+      <div class="anim-desc">Hero images move slower than scroll.</div>
+      <div class="anim-spec">Scroll Transform: 0.25–0.3x speed</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Ken Burns</div>
+      <div class="anim-desc">Slow zoom on CTA background images.</div>
+      <div class="anim-spec">Scale 1→1.08 over 20s, alternating</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Icon Hover</div>
+      <div class="anim-desc">Contact detail icons scale up.</div>
+      <div class="anim-spec">scale(1.08), 0.3s ease</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type builtin">Built-in</div>
+      <div class="anim-name">Social Pill Hover</div>
+      <div class="anim-desc">Footer social links lift on hover.</div>
+      <div class="anim-spec">translateY(-2px) + subtle shadow</div>
+    </div>
+  </div>
+
+  <h3>Code Overrides Required</h3>
+  <div class="anim-grid">
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Counter Animation</div>
+      <div class="anim-desc">Stats count from 0 to target value on scroll.</div>
+      <div class="anim-spec">IntersectionObserver, threshold 0.5, steps = target/40, 30ms interval</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">3D Tilt (Articles)</div>
+      <div class="anim-desc">Library article cards tilt following cursor.</div>
+      <div class="anim-spec">perspective(800px), rotateY/X ±6deg, reset on mouseleave</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Word-by-Word Quote</div>
+      <div class="anim-desc">About page quote reveals word by word.</div>
+      <div class="anim-spec">Each word opacity 0.15→1.0, 60ms stagger</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Logo Marquee</div>
+      <div class="anim-desc">Infinite horizontal scroll of brand logos.</div>
+      <div class="anim-spec">CSS @keyframes translateX(-50%), 30s linear infinite</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Testimonial Carousel</div>
+      <div class="anim-desc">Auto-rotating single-card testimonials.</div>
+      <div class="anim-spec">State machine, crossfade, 6s setInterval</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Timeline Scroll Progress</div>
+      <div class="anim-desc">Progress line fills as horizontal scroll moves.</div>
+      <div class="anim-spec">Scroll listener, accent fill width tracks position</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Form Focus Underlines</div>
+      <div class="anim-desc">Accent line grows from center on input focus.</div>
+      <div class="anim-spec">CSS pseudo-element, width 0→100% from center on :focus-within</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-type code">Code Override</div>
+      <div class="anim-name">Nav Scroll Transition</div>
+      <div class="anim-desc">Navbar changes background on scroll.</div>
+      <div class="anim-spec">Scroll listener, toggle bg opacity + shadow</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PAGE CHECKLIST -->
+<section>
+  <div class="section-number">06</div>
+  <h2 class="section-title">Page Structure Checklist</h2>
+  <p class="section-desc">Every section for each page. Use this to track your Framer build progress.</p>
+
+  <div class="checklist-page">
+    <h4>Home</h4>
+    <ul class="checklist">
+      <li>Navigation bar</li>
+      <li>Hero (title + subtitle + CTA + image)</li>
+      <li>Logo trust bar</li>
+      <li>Services section (tabbed cards)</li>
+      <li>Bio preview (image + text + link)</li>
+      <li>Impact stats strip (4 counters)</li>
+      <li>Testimonials carousel</li>
+      <li>CTA section (Ken Burns bg)</li>
+      <li>Footer</li>
+    </ul>
+  </div>
+
+  <div class="checklist-page">
+    <h4>Speaking</h4>
+    <ul class="checklist">
+      <li>Navigation bar</li>
+      <li>Hero (2-col with parallax image)</li>
+      <li>Logo marquee bar</li>
+      <li>Topics grid (6 cards, 3-col)</li>
+      <li>Stats strip (4 counters on accent)</li>
+      <li>Audiences grid (4 cards on dark)</li>
+      <li>Formats (list + image, 2-col)</li>
+      <li>Testimonials carousel</li>
+      <li>CTA section (Ken Burns bg)</li>
+      <li>Footer</li>
+    </ul>
+  </div>
+
+  <div class="checklist-page">
+    <h4>About</h4>
+    <ul class="checklist">
+      <li>Navigation bar (dark variant)</li>
+      <li>Hero (full-bleed parallax + gradient)</li>
+      <li>Full bio (sticky image + scrolling text)</li>
+      <li>Horizontal scroll timeline</li>
+      <li>Word-by-word quote (dark section)</li>
+      <li>CTA section</li>
+      <li>Footer</li>
+    </ul>
+  </div>
+
+  <div class="checklist-page">
+    <h4>Library</h4>
+    <ul class="checklist">
+      <li>Navigation bar</li>
+      <li>Hero section</li>
+      <li>Articles grid (3-col + filter + 3D tilt)</li>
+      <li>Videos grid (2-col + play overlays)</li>
+      <li>Resources (dark bg, download list)</li>
+      <li>Book teaser (ambient glow, floating cover)</li>
+      <li>Paid courses (2 cards, slide-in)</li>
+      <li>Footer</li>
+    </ul>
+  </div>
+
+  <div class="checklist-page">
+    <h4>Contact</h4>
+    <ul class="checklist">
+      <li>Navigation bar</li>
+      <li>2-col layout (info + form)</li>
+      <li>Contact details (icons + hover)</li>
+      <li>Form (animated focus underlines)</li>
+      <li>Availability note</li>
+      <li>Social strip (wave stagger)</li>
+      <li>Footer</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7. CUSTOM CODE -->
+<section>
+  <div class="section-number">07</div>
+  <h2 class="section-title">Custom Code</h2>
+  <p class="section-desc">Add this to Framer Project Settings → Custom Code → Head to load the fonts.</p>
+
+  <div class="code-block"><span class="comment">&lt;!-- Add to Project Settings → Custom Code → Head --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="val">"preconnect"</span> <span class="attr">href=</span><span class="val">"https://fonts.googleapis.com"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="val">"preconnect"</span> <span class="attr">href=</span><span class="val">"https://fonts.gstatic.com"</span> <span class="attr">crossorigin</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">href=</span><span class="val">"https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;1,300;1,400&family=Atkinson+Hyperlegible:wght@400;700&display=swap"</span> <span class="attr">rel=</span><span class="val">"stylesheet"</span><span class="tag">&gt;</span></div>
+
+  <div class="note">
+    <strong>Two-font stack:</strong> With DM Sans replaced, you only need Newsreader (headings/display) and Atkinson Hyperlegible (everything else — body, buttons, nav, UI, eyebrows).
+  </div>
+</section>
+
+<!-- 8. IMAGES -->
+<section>
+  <div class="section-number">08</div>
+  <h2 class="section-title">Image Assignments</h2>
+  <p class="section-desc">Map these files to the correct sections when building in Framer.</p>
+
+  <table class="img-table">
+    <thead>
+      <tr><th>Image File</th><th>Mapped To</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nancy01.jpg <span class="img-desc">White blazer, front-facing</span></td>
+        <td>Home hero</td>
+      </tr>
+      <tr>
+        <td>Nancy15.jpg <span class="img-desc">Blue patterned shirt, arms crossed</span></td>
+        <td>Speaking hero, Home services section</td>
+      </tr>
+      <tr>
+        <td>Nancy07.jpg <span class="img-desc">White blazer, smiling, hand gesture</span></td>
+        <td>About hero, Course cards</td>
+      </tr>
+      <tr>
+        <td>Nancy02.jpg <span class="img-desc">White blazer, side angle</span></td>
+        <td>About bio sidebar, Speaking formats section</td>
+      </tr>
+      <tr>
+        <td>DSC00256.jpg <span class="img-desc">BBC building, orange top</span></td>
+        <td>Library hero, Home bio, CTA backgrounds</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<!-- END FOOTER -->
+<div style="background:var(--dark); padding: 3rem 2rem; text-align:center;">
+  <div style="font-family:'Newsreader',serif; font-size:24px; color:var(--light); margin-bottom:0.5rem;">Nancy Kacungira</div>
+  <div style="font-size:14px; color:var(--muted-on-dark);">Design Tokens & Components Guide — Prepared March 2026</div>
+</div>
+
+</body>
+</html>

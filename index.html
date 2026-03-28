@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nancy Kacungira — Strategic Communication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500;1,6..72,600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-white:#FFFFFF;--bg-cream:#F7F7F4;--bg-dark:#2A1F23;
+      --text-primary:#4B1911;--text-italic:#95838A;--text-body:rgba(0,0,0,0.6);
+      --text-light:#F8F7F5;--text-light-muted:rgba(255,255,255,0.5);
+      --accent:#70251A;--accent-muted:rgba(112,37,26,0.72);
+      --serif:'Newsreader',Georgia,serif;
+      --sans:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',sans-serif;
+      --ui:'DM Sans',sans-serif;
+      --r-btn:110px;--ease:0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--sans);color:var(--text-primary);background:var(--bg-white);overflow-x:hidden}
+    img{display:block;max-width:100%}
+
+    /* ══════════ NAV ══════════ */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.25rem 5.75%;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:all var(--ease)}
+    nav.scrolled{background:rgba(255,255,255,0.95);box-shadow:0 1px 0 rgba(75,25,17,0.06)}
+    nav.over-dark{background:transparent}
+    nav.over-dark.scrolled{background:rgba(255,255,255,0.95)}
+    nav.over-dark:not(.scrolled) .nav-logo{color:var(--text-light)}
+    nav.over-dark:not(.scrolled) .nav-links a{color:rgba(255,255,255,0.6)}
+    nav.over-dark:not(.scrolled) .nav-links a:hover,nav.over-dark:not(.scrolled) .nav-links a.active{color:var(--text-light)}
+    .nav-logo{font-family:var(--serif);font-size:2.5rem;font-weight:400;color:var(--text-primary);text-decoration:none;letter-spacing:-0.02em;transition:color var(--ease);line-height:1}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+    .nav-links a{font-family:var(--sans);font-size:0.9375rem;color:var(--text-body);text-decoration:none;transition:color var(--ease);position:relative}
+    .nav-links a:hover,.nav-links a.active{color:var(--text-primary)}
+    .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--accent);border-radius:2px}
+    .nav-hamburger{display:none;background:var(--bg-dark);border:none;width:48px;height:48px;border-radius:50%;cursor:pointer;position:relative;flex-shrink:0}
+    .nav-hamburger span{position:absolute;left:50%;transform:translateX(-50%);width:18px;height:1.5px;background:var(--text-light);border-radius:2px;transition:all 0.3s ease}
+    .nav-hamburger span:nth-child(1){top:16px}.nav-hamburger span:nth-child(2){top:23px}.nav-hamburger span:nth-child(3){top:30px}
+    .nav-hamburger.open span:nth-child(1){top:23px;transform:translateX(-50%) rotate(45deg)}
+    .nav-hamburger.open span:nth-child(2){opacity:0}
+    .nav-hamburger.open span:nth-child(3){top:23px;transform:translateX(-50%) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg-dark);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity 0.4s ease}
+    .mobile-menu.open{opacity:1;pointer-events:all}
+    .mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--text-light);text-decoration:none;transition:opacity 0.3s ease}
+    .mobile-menu a:hover{opacity:0.6}
+
+    /* ══════════ BUTTONS ══════════ */
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--sans);font-size:17px;font-weight:600;text-decoration:none;border-radius:var(--r-btn);padding:16px 36px;transition:all var(--ease);cursor:pointer;border:none;line-height:1}
+    .btn svg{width:16px;height:16px;transition:transform 0.3s ease}
+    .btn:hover svg{transform:translateX(3px)}
+    .btn-dark{background:var(--bg-dark);color:var(--text-light)}.btn-dark:hover{background:#3a2f33;transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,31,35,0.2)}
+    .btn-accent{background:var(--accent);color:var(--text-light)}.btn-accent:hover{background:#5e1f14;transform:translateY(-2px);box-shadow:0 8px 28px rgba(112,37,26,0.28)}
+    .btn-outline-light{background:transparent;color:var(--text-light);border:1.5px solid rgba(248,247,245,0.3)}.btn-outline-light:hover{border-color:rgba(248,247,245,0.6);background:rgba(248,247,245,0.08)}
+    .btn-white{background:var(--bg-white);color:var(--bg-dark)}.btn-white:hover{background:var(--bg-cream);transform:translateY(-2px)}
+    .btn-lg{font-size:20px;padding:20px 42px}
+    .arrow-icon{display:inline-block;width:16px;height:16px}
+
+    /* ══════════ GLOBAL SECTIONS ══════════ */
+    .container{max-width:1360px;margin:0 auto}
+    .section-white{background:var(--bg-white);padding:7rem 5.75%}.section-cream{background:var(--bg-cream);padding:7rem 5.75%}.section-dark{background:var(--bg-dark);padding:7rem 5.75%}
+    .section-eyebrow{font-size:0.8125rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-italic);margin-bottom:1rem}.section-dark .section-eyebrow{color:var(--text-light-muted)}
+    .section-heading{font-family:var(--serif);font-size:clamp(2rem,3.5vw,48px);font-weight:400;line-height:1.15;color:var(--text-primary);margin-bottom:1rem;letter-spacing:-0.5px}.section-dark .section-heading{color:var(--text-light)}.section-heading em{font-style:italic;color:var(--text-italic)}.section-dark .section-heading em{color:var(--text-light);opacity:0.65}
+    .section-desc{font-size:18px;line-height:1.5;color:var(--text-italic);max-width:540px}.section-dark .section-desc{color:var(--text-light-muted)}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease}.reveal-left.visible{opacity:1;transform:translateX(0)}
+    .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}.reveal-right.visible{opacity:1;transform:translateX(0)}
+    .reveal-stagger>.reveal:nth-child(1){transition-delay:0s}.reveal-stagger>.reveal:nth-child(2){transition-delay:0.07s}.reveal-stagger>.reveal:nth-child(3){transition-delay:0.14s}.reveal-stagger>.reveal:nth-child(4){transition-delay:0.21s}.reveal-stagger>.reveal:nth-child(5){transition-delay:0.28s}.reveal-stagger>.reveal:nth-child(6){transition-delay:0.35s}
+    .page-section{display:none}.page-section.active{display:block}
+
+    /* ══════════ HOME HERO ══════════ */
+    .home-hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;padding-top:80px}
+    .home-hero-text{display:flex;align-items:center;padding:4rem 0 4rem 5.75%}
+    .home-hero-title{font-family:var(--serif);font-size:clamp(2.5rem,4.5vw,65px);font-weight:400;line-height:1.08;letter-spacing:-1.3px;color:var(--text-primary);margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.7s 0.3s ease forwards}
+    .home-hero-title em{font-style:italic;color:var(--text-italic)}
+    .home-hero-cta{opacity:0;animation:fadeUp 0.7s 0.6s ease forwards}
+    .home-hero-img{position:relative;overflow:hidden}
+    .home-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+
+    /* Logo bar */
+    .logo-bar{padding:2.5rem 5.75%;position:relative;overflow:hidden;border-top:1px solid rgba(75,25,17,0.06);border-bottom:1px solid rgba(75,25,17,0.06)}
+    .logo-bar::before,.logo-bar::after{content:'';position:absolute;top:0;bottom:0;width:300px;z-index:1;pointer-events:none}
+    .logo-bar::before{left:0;background:linear-gradient(to right,white,rgba(255,255,255,0))}.logo-bar::after{right:0;background:linear-gradient(to left,white,rgba(255,255,255,0))}
+    .logo-track{display:flex;gap:4rem;align-items:center;animation:marquee 30s linear infinite;width:max-content}
+    .logo-placeholder{font-family:var(--ui);font-size:0.875rem;font-weight:600;color:var(--text-primary);opacity:0.3;letter-spacing:0.04em;white-space:nowrap}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Home Services */
+    .services-tabs{display:flex;gap:2rem;margin-bottom:3rem}
+    .service-tab{flex:1;cursor:pointer;transition:opacity var(--ease)}
+    .service-tab.muted{opacity:0.4}
+    .service-tab-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text-primary);margin-bottom:8px;letter-spacing:-0.56px;line-height:1.1}
+    .service-tab-desc{font-size:18px;line-height:1.2;color:var(--text-italic)}
+    .services-image{width:100%;aspect-ratio:1276/651;overflow:hidden;position:relative}
+    .services-image img{width:100%;height:100%;object-fit:cover}
+
+    /* Home Bio */
+    .home-bio{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+    .home-bio-text{padding:42px 72px}
+    .home-bio-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,65px);font-weight:400;line-height:1.08;letter-spacing:-1.3px;color:var(--text-primary);margin-bottom:30px}
+    .home-bio-title em{font-style:italic;color:var(--text-italic)}
+    .home-bio-body{font-size:21px;line-height:1.2;color:var(--text-italic)}
+    .home-bio-image{overflow:hidden;max-width:610px;aspect-ratio:3/4}
+    .home-bio-image img{width:100%;height:100%;object-fit:cover}
+
+    /* Home Impact Stats (2x2 grid) */
+    .impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;max-width:1001px;margin:0 auto}
+    .impact-card{background:var(--bg-cream);padding:30px 50px;display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:261px}
+    .impact-number{font-family:var(--serif);font-size:clamp(2.5rem,5vw,71px);font-weight:400;color:var(--text-primary);line-height:1.17}
+    .impact-label{font-family:var(--ui);font-size:21px;line-height:1.2;color:var(--text-body)}
+
+    /* Home Testimonials */
+    .home-test-layout{display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:start}
+    .test-nav{display:flex;gap:11px;padding-top:0.5rem;flex-direction:column}
+    .test-heading-col{display:flex;flex-direction:column;gap:2rem}
+    .test-nav-btn{background:var(--accent);border:none;border-radius:var(--r-btn);width:64px;height:64px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}.test-nav-btn:first-child{background:var(--accent-muted)}.test-nav-btn:hover{transform:scale(1.05)}.test-nav-btn svg{width:20px;height:20px;color:var(--text-light)}
+    .test-carousel{position:relative;min-height:280px}
+    .test-slide{opacity:0;position:absolute;top:0;left:0;right:0;transition:opacity 0.6s ease,transform 0.6s ease;transform:translateY(10px)}.test-slide.active{opacity:1;position:relative;transform:translateY(0)}
+    .test-text{font-family:var(--sans);font-size:21px;font-weight:400;line-height:1.2;color:var(--text-body);margin-bottom:2.5rem}
+    .test-author-row{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(75,25,17,0.08)}
+    .test-meta{display:flex;flex-direction:column;gap:7px}.test-name{font-size:21px;line-height:1.2;color:black}.test-role{font-size:21px;line-height:1.2;color:rgba(0,0,0,0.5)}
+
+    /* ══════════ SPEAKING HERO ══════════ */
+    .sp-hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;padding-top:80px}
+    .sp-hero-text{display:flex;align-items:center;padding:4rem 0 4rem 5.75%}
+    .sp-hero-eyebrow{font-size:0.8125rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-italic);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s 0.2s ease forwards}
+    .sp-hero-title{font-family:var(--serif);font-size:clamp(2.5rem,4.5vw,65px);font-weight:400;line-height:1.08;letter-spacing:-1.3px;color:var(--text-primary);margin-bottom:1.75rem;opacity:0;animation:fadeUp 0.7s 0.4s ease forwards}
+    .sp-hero-title em{font-style:italic;color:var(--text-italic)}
+    .sp-hero-desc{font-size:21px;line-height:1.3;color:var(--text-italic);max-width:440px;margin-bottom:2.75rem;opacity:0;animation:fadeUp 0.7s 0.6s ease forwards}
+    .sp-hero-cta{opacity:0;animation:fadeUp 0.7s 0.8s ease forwards}
+    .sp-hero-img{position:relative;overflow:hidden}.sp-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;will-change:transform}
+
+    /* Topics */
+    .topics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(75,25,17,0.06)}
+    .topic-card{background:var(--bg-white);padding:2.75rem 2.25rem;transition:all var(--ease);position:relative;overflow:hidden}
+    .topic-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--accent);transition:width 0.5s ease}.topic-card:hover::before{width:100%}.topic-card:hover{background:var(--bg-cream)}
+    .topic-icon{width:44px;height:44px;border-radius:50%;background:rgba(112,37,26,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+    .topic-icon svg{width:20px;height:20px;color:var(--accent)}
+    .topic-number{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--accent);margin-bottom:1.5rem;display:block}
+    .topic-title{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--text-primary);margin-bottom:8px;line-height:1.2;letter-spacing:-0.3px}
+    .topic-desc{font-size:16px;line-height:1.55;color:var(--text-italic)}
+
+    /* Stats strip */
+    .stats-strip{padding:4rem 5.75%;background:var(--bg-dark)}
+    .stats-inner{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+    .stat{position:relative}.stat:not(:last-child)::after{content:'';position:absolute;right:0;top:15%;height:70%;width:1px;background:rgba(248,247,245,0.1)}
+    .stat-number{font-family:var(--serif);font-size:clamp(2.5rem,3.5vw,56px);font-weight:400;color:var(--text-light);margin-bottom:0.35rem;line-height:1}
+    .stat-label{font-size:14px;color:rgba(248,247,245,0.55);letter-spacing:0.02em}
+
+    /* Audiences */
+    .audiences-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(248,247,245,0.08)}
+    .audience-card{display:flex;align-items:flex-start;gap:1.5rem;padding:2.5rem;background:var(--bg-dark);transition:all var(--ease)}.audience-card:hover{background:#332930}
+    .audience-icon{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:rgba(112,37,26,0.18);display:flex;align-items:center;justify-content:center}
+    .audience-icon svg{width:22px;height:22px;color:rgba(248,247,245,0.5)}
+    .audience-name{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--text-light);margin-bottom:6px;letter-spacing:-0.3px}
+    .audience-desc{font-size:16px;line-height:1.5;color:var(--text-light-muted)}
+
+    /* Formats */
+    .formats-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .format-list{margin-top:2.5rem}
+    .format-item{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;position:relative;cursor:default}
+    .format-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(75,25,17,0.08)}
+    .format-item:first-child::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:rgba(75,25,17,0.08)}
+    .format-item .line-draw{position:absolute;bottom:0;left:0;height:1px;width:0;background:var(--accent);transition:width 0.6s ease}.format-item:hover .line-draw{width:100%}.format-item:hover{padding-left:0.75rem;transition:padding-left 0.3s ease}
+    .format-left{display:flex;align-items:center;gap:1rem}.format-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}.format-name{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--text-primary);letter-spacing:-0.3px}.format-tag{font-size:15px;color:var(--text-italic)}
+    .formats-image{overflow:hidden;aspect-ratio:4/5}
+    .formats-image img{width:100%;height:100%;object-fit:cover}
+
+    /* Speaking Testimonials */
+    .testimonial-layout{display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:start}
+    .testimonial-nav{display:flex;gap:11px;padding-top:0.5rem}
+    .testimonial-nav-btn{background:var(--accent);border:none;border-radius:var(--r-btn);width:64px;height:64px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}.testimonial-nav-btn:first-child{background:var(--accent-muted)}.testimonial-nav-btn:hover{transform:scale(1.05)}.testimonial-nav-btn svg{width:20px;height:20px;color:var(--text-light)}
+    .testimonial-carousel{position:relative;min-height:200px}
+    .testimonial-slide{opacity:0;position:absolute;top:0;left:0;right:0;transition:opacity 0.6s ease,transform 0.6s ease;transform:translateY(10px)}.testimonial-slide.active{opacity:1;position:relative;transform:translateY(0)}
+    .testimonial-text{font-family:var(--serif);font-size:22px;font-weight:300;font-style:italic;line-height:1.55;color:var(--text-light);margin-bottom:2.5rem}
+    .testimonial-author-row{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid rgba(248,247,245,0.1)}
+    .testimonial-meta{display:flex;flex-direction:column;gap:4px}.testimonial-name{font-size:16px;font-weight:700;color:var(--text-light)}.testimonial-role{font-size:15px;color:var(--text-light-muted)}
+
+    /* ══════════ ABOUT ══════════ */
+    .about-hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;padding-top:80px}
+    .about-hero-text{display:flex;align-items:center;padding:4rem 0 4rem 5.75%}
+    .about-hero-eyebrow{font-size:0.8125rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-italic);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s 0.2s ease forwards}
+    .about-hero-title{font-family:var(--serif);font-size:clamp(2.5rem,4.5vw,65px);font-weight:400;line-height:1.08;letter-spacing:-1.3px;color:var(--text-primary);margin-bottom:2rem;opacity:0;animation:fadeUp 0.7s 0.4s ease forwards}
+    .about-hero-title em{font-style:italic;color:var(--text-italic)}
+    .about-hero-cta{opacity:0;animation:fadeUp 0.7s 0.6s ease forwards}
+    .about-hero-img{position:relative;overflow:hidden}
+    .about-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+    .bio-section{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .bio-image{position:sticky;top:120px;overflow:hidden}
+    .bio-image img{width:100%;height:auto}
+    .bio-paragraph{font-size:18px;line-height:1.65;color:var(--text-italic);margin-bottom:1.5rem}
+
+    /* Timeline */
+    .timeline-track-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:3rem;padding-bottom:2rem;scrollbar-width:none}.timeline-track-wrapper::-webkit-scrollbar{display:none}
+    .timeline-track{display:flex;gap:0;position:relative;min-width:max-content}.timeline-track::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:rgba(75,25,17,0.08)}
+    .timeline-progress{position:absolute;top:0;left:0;height:2px;background:var(--accent);width:0;transition:width 0.3s ease}
+    .timeline-card{width:340px;padding:2.5rem 2rem 2rem;position:relative;flex-shrink:0;border-right:1px solid rgba(75,25,17,0.06)}
+    .timeline-card::before{content:'';position:absolute;top:-5px;left:2rem;width:10px;height:10px;border-radius:50%;background:var(--bg-cream);border:2px solid var(--accent);z-index:1}
+    .timeline-year{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--accent);margin-bottom:1rem;display:block}
+    .timeline-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--text-primary);margin-bottom:6px;letter-spacing:-0.3px}
+    .timeline-desc{font-size:15px;line-height:1.55;color:var(--text-italic)}
+    .scroll-hint{display:flex;align-items:center;gap:0.5rem;font-size:0.8125rem;color:var(--text-italic);margin-top:1rem}
+    .scroll-hint svg{width:16px;height:16px;animation:nudge 1.5s ease infinite}
+    @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+
+    /* Quote */
+    .quote-section{text-align:center;max-width:860px;margin:0 auto}
+    .quote-text{font-family:var(--serif);font-size:clamp(1.375rem,2.5vw,2rem);font-weight:300;font-style:italic;line-height:1.55;color:var(--text-light);margin-bottom:2rem}
+    .quote-text .word{display:inline-block;opacity:0.15;transition:opacity 0.5s ease;margin-right:0.3em}.quote-text .word.lit{opacity:1}
+    .quote-attr{font-size:0.9375rem;color:var(--text-light-muted)}
+
+    /* ══════════ LIBRARY ══════════ */
+    .lib-hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;padding-top:80px}
+    .lib-hero-text{display:flex;align-items:center;padding:4rem 0 4rem 5.75%}
+    .lib-hero-eyebrow{font-size:0.8125rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-italic);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s 0.2s ease forwards}
+    .lib-hero-title{font-family:var(--serif);font-size:clamp(2.5rem,4.5vw,65px);font-weight:400;line-height:1.08;letter-spacing:-1.3px;color:var(--text-primary);margin-bottom:1.75rem;max-width:600px;opacity:0;animation:fadeUp 0.7s 0.3s ease forwards}.lib-hero-title em{font-style:italic;color:var(--text-italic)}
+    .lib-hero-desc{font-size:21px;line-height:1.3;color:var(--text-italic);max-width:480px;margin-bottom:2.75rem;opacity:0;animation:fadeUp 0.7s 0.5s ease forwards}
+    .lib-hero-cta{opacity:0;animation:fadeUp 0.7s 0.7s ease forwards}
+    .lib-hero-img{position:relative;overflow:hidden}
+    .lib-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+
+    .filter-tabs{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap}
+    .filter-tab{font-family:var(--sans);font-size:15px;font-weight:600;padding:10px 24px;border-radius:var(--r-btn);border:1.5px solid rgba(75,25,17,0.1);background:transparent;color:var(--text-italic);cursor:pointer;transition:all var(--ease)}.filter-tab:hover{border-color:rgba(75,25,17,0.25);color:var(--text-primary)}.filter-tab.active{background:var(--bg-dark);color:var(--text-light);border-color:var(--bg-dark)}
+    .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(75,25,17,0.06)}
+    .article-card{background:var(--bg-cream);overflow:hidden;transition:all var(--ease)}.article-card:hover{z-index:2}
+    .article-card-inner{transition:transform 0.3s ease;will-change:transform}
+    .article-thumb{aspect-ratio:16/10;background:linear-gradient(160deg,#e8e0d6,#d5cbc0);overflow:hidden}.article-thumb-inner{width:100%;height:100%;transition:transform 6s ease}.article-card:hover .article-thumb-inner{transform:scale(1.06)}
+    .article-body{padding:2rem 1.75rem 2.25rem}
+    .article-tag{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:inline-block}
+    .article-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--text-primary);line-height:1.25;margin-bottom:0.5rem;letter-spacing:-0.3px}
+    .article-excerpt{font-size:15px;line-height:1.55;color:var(--text-italic);margin-bottom:1.25rem}
+    .article-link{font-size:14px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:gap 0.3s ease}.article-link:hover{gap:0.65rem}.article-link svg{width:14px;height:14px}
+
+    .videos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(75,25,17,0.06);margin-top:3.5rem}
+    .video-card{background:var(--bg-white);overflow:hidden;cursor:pointer}.video-thumb{aspect-ratio:16/9;background:linear-gradient(160deg,#e8e0d6,#d5cbc0);position:relative;overflow:hidden}
+    .video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(255,255,255,0.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.12);transition:all var(--ease)}.video-card:hover .video-play{transform:translate(-50%,-50%) scale(1.12)}.video-play svg{width:24px;height:24px;color:var(--accent);margin-left:3px}
+    .video-body{padding:1.5rem 1.75rem}.video-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:0.3rem;letter-spacing:-0.2px}.video-meta{font-size:14px;color:var(--text-italic)}
+
+    .resources-list{margin-top:3.5rem}
+    .resource-item{display:flex;align-items:center;justify-content:space-between;padding:1.75rem 0;border-bottom:1px solid rgba(248,247,245,0.08);transition:padding-left 0.3s ease}.resource-item:first-child{border-top:1px solid rgba(248,247,245,0.08)}.resource-item:hover{padding-left:0.75rem}
+    .resource-left{display:flex;align-items:center;gap:1.25rem}.resource-icon{width:48px;height:48px;background:rgba(112,37,26,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}.resource-icon svg{width:22px;height:22px;color:rgba(248,247,245,0.5)}
+    .resource-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--text-light);letter-spacing:-0.2px}.resource-desc{font-size:14px;color:var(--text-light-muted);margin-top:0.2rem}
+    .resource-action{font-size:14px;font-weight:600;color:var(--text-light-muted);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:all var(--ease);white-space:nowrap}.resource-action:hover{color:var(--text-light)}.resource-action svg{width:14px;height:14px}
+
+    /* Courses */
+    .courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(248,247,245,0.08);margin-top:3rem}
+    .course-card{background:var(--bg-dark);overflow:hidden;display:flex;flex-direction:column}
+    .course-thumb{aspect-ratio:16/9;overflow:hidden;position:relative}
+    .course-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+    .course-card:hover .course-thumb img{transform:scale(1.06)}
+    .course-badge{position:absolute;top:1.25rem;left:1.25rem;z-index:2;display:inline-flex;align-items:center;gap:0.4rem;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:var(--r-btn);backdrop-filter:blur(8px)}
+    .course-badge-live{background:rgba(112,37,26,0.9);color:var(--text-light)}
+    .course-badge-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--text-light);animation:pulse 2s ease infinite}
+    .course-badge-self{background:rgba(255,255,255,0.88);color:var(--text-primary)}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+    .course-body{padding:2rem 2rem 2.5rem;flex:1;display:flex;flex-direction:column}
+    .course-meta{display:flex;align-items:center;gap:1.25rem;margin-bottom:1rem;flex-wrap:wrap}
+    .course-meta-item{display:flex;align-items:center;gap:0.35rem;font-size:13px;font-weight:500;color:var(--text-light-muted)}
+    .course-meta-item svg{width:14px;height:14px;color:var(--accent);opacity:0.7}
+    .course-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text-light);line-height:1.2;margin-bottom:0.75rem;letter-spacing:-0.56px}
+    .course-desc{font-size:16px;line-height:1.55;color:var(--text-light-muted);margin-bottom:1.5rem;flex:1}
+    .course-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .course-price{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--text-light)}
+    .course-price-note{font-family:var(--sans);font-size:13px;color:var(--text-light-muted);font-weight:400}
+
+    /* Book */
+    .book-section{position:relative;overflow:hidden}
+    .book-glow{position:absolute;top:50%;left:25%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(112,37,26,0.15) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none;animation:glowPulse 4s ease infinite alternate}
+    @keyframes glowPulse{0%{opacity:0.6;transform:translate(-50%,-50%) scale(1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+    .book-layout{display:grid;grid-template-columns:auto 1fr;gap:5rem;align-items:center;position:relative;z-index:1}
+    .book-cover{width:280px;aspect-ratio:3/4;background:linear-gradient(160deg,#4a3540,#2A1F23);box-shadow:0 24px 80px rgba(0,0,0,0.35);overflow:hidden;transition:transform var(--ease);display:flex;align-items:center;justify-content:center;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(248,247,245,0.3)}.book-cover:hover{transform:translateY(-8px) rotate(-1deg)}
+    .book-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:rgba(112,37,26,0.12);padding:8px 16px;border-radius:var(--r-btn);margin-bottom:1.5rem}
+    .book-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease infinite}
+
+    /* ══════════ CONTACT ══════════ */
+    .contact-page{padding:10rem 5.75% 7rem;max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:6rem;align-items:start}
+    .contact-info h2{font-family:var(--serif);font-size:clamp(2.5rem,4.5vw,56px);font-weight:400;line-height:1.08;letter-spacing:-1px;color:var(--text-primary);margin-bottom:1.75rem;opacity:0;animation:fadeUp 0.7s 0.2s ease forwards}.contact-info h2 em{font-style:italic;color:var(--text-italic)}
+    .contact-info-desc{font-size:18px;line-height:1.5;color:var(--text-italic);margin-bottom:3rem;max-width:440px;opacity:0;animation:fadeUp 0.7s 0.4s ease forwards}
+    .contact-details{display:flex;flex-direction:column;gap:1.75rem;opacity:0;animation:fadeUp 0.7s 0.6s ease forwards}
+    .contact-detail{display:flex;align-items:flex-start;gap:1.25rem}
+    .contact-detail-icon{width:48px;height:48px;border-radius:60px;background:var(--bg-cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform var(--ease)}.contact-detail:hover .contact-detail-icon{transform:scale(1.08)}
+    .contact-detail-icon svg{width:22px;height:22px;color:var(--accent)}
+    .contact-detail-label{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--text-primary);margin-bottom:0.15rem}
+    .contact-detail-value{font-size:15px;color:var(--text-italic)}.contact-detail-value a{color:var(--text-italic);text-decoration:none;transition:color var(--ease)}.contact-detail-value a:hover{color:var(--text-primary)}
+    .availability-note{margin-top:3rem;padding:2rem;background:var(--bg-cream);position:relative;overflow:hidden;opacity:0;animation:fadeUp 0.7s 0.8s ease forwards}.availability-note::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+    .availability-title{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--text-primary);margin-bottom:0.5rem}.availability-text{font-size:15px;line-height:1.55;color:var(--text-italic)}
+    .contact-form-wrapper{background:var(--bg-cream);padding:3rem;opacity:0;animation:fadeUp 0.7s 0.5s ease forwards}
+    .form-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text-primary);margin-bottom:0.5rem;letter-spacing:-0.3px}.form-subtitle{font-size:15px;color:var(--text-italic);margin-bottom:2.5rem}
+    .form-group{margin-bottom:1.5rem;position:relative}.form-label{display:block;font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;transition:color var(--ease)}
+    .form-input,.form-select,.form-textarea{width:100%;font-family:var(--sans);font-size:15px;color:var(--text-primary);background:var(--bg-white);border:1px solid rgba(75,25,17,0.08);padding:15.5px 17.5px;transition:all var(--ease);outline:none}
+    .form-input::placeholder,.form-textarea::placeholder{color:var(--text-italic);opacity:0.5}
+    .form-group::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--accent);transition:all 0.4s ease;transform:translateX(-50%)}.form-group:focus-within::after{width:100%}.form-group:focus-within .form-label{color:var(--accent)}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:rgba(75,25,17,0.15)}
+    .form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2395838A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}
+    .form-textarea{min-height:140px;resize:vertical}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+    .social-strip{background:var(--bg-dark);padding:5rem 5.75%}
+    .social-inner{max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .social-text{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text-light);letter-spacing:-0.3px}.social-text em{font-style:italic}
+    .social-links{display:flex;gap:0.75rem}
+    .social-pill{font-family:var(--ui);font-size:16px;color:var(--text-light);padding:15px 33px;border-radius:var(--r-btn);border:1px solid rgba(248,247,245,0.2);text-decoration:none;line-height:1;transition:all var(--ease);opacity:0;transform:translateY(15px)}.social-pill.visible{opacity:1;transform:translateY(0)}.social-pill:hover{border-color:rgba(248,247,245,0.5);background:rgba(248,247,245,0.06)}
+
+    /* ══════════ CTA ══════════ */
+    .cta-section{position:relative;height:670px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .cta-bg{position:absolute;inset:0;overflow:hidden}
+    .cta-bg img{width:100%;height:100%;object-fit:cover;animation:kenBurns 20s ease infinite alternate}
+    .cta-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.6)}
+    @keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+    .cta-inner{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;gap:16px;align-items:center;max-width:640px}
+    .cta-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,48px);font-weight:400;line-height:1.15;letter-spacing:-0.5px;color:var(--text-light)}.cta-title em{font-style:italic}
+    .cta-desc{font-size:18px;line-height:1.65;color:var(--text-light);margin-bottom:1rem}
+    .cta-buttons{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;padding-top:8px}
+
+    /* ══════════ FOOTER ══════════ */
+    footer{background:var(--bg-dark);padding:3.5rem 5.75% 2.5rem;border-top:1px solid rgba(248,247,245,0.08)}
+    .footer-inner{max-width:1360px;margin:0 auto}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:2.5rem;border-bottom:1px solid rgba(248,247,245,0.08);margin-bottom:2rem}
+    .footer-brand{display:flex;flex-direction:column;gap:1rem}
+    .footer-logo{font-family:var(--serif);font-size:1.375rem;font-weight:500;color:var(--text-light);text-decoration:none}
+    .footer-contact-row{display:flex;gap:2rem}.footer-contact-row a{font-size:0.8125rem;color:var(--text-light-muted);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color var(--ease)}.footer-contact-row a:hover{color:var(--text-light)}.footer-contact-row svg{width:14px;height:14px}
+    .footer-nav{display:flex;gap:2rem}.footer-nav a{font-family:var(--sans);font-size:0.9375rem;color:var(--text-light-muted);text-decoration:none;transition:color var(--ease)}.footer-nav a:hover{color:var(--text-light)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center}
+    .footer-social{display:flex;gap:0.5rem}.footer-social a{font-family:var(--ui);font-size:0.8125rem;color:var(--bg-dark);background:var(--text-light-muted);padding:0.4rem 0.9rem;border-radius:var(--r-btn);text-decoration:none;transition:all var(--ease)}.footer-social a:hover{background:var(--text-light)}
+    .footer-copy{font-size:0.8125rem;color:var(--text-light-muted)}
+
+    /* ══════════ RESPONSIVE ══════════ */
+    @media(max-width:1080px){
+      .home-hero,.sp-hero,.about-hero,.lib-hero{grid-template-columns:1fr;min-height:auto}
+      .home-hero-img,.sp-hero-img,.about-hero-img,.lib-hero-img{height:500px;position:relative}
+      .home-hero-img img,.sp-hero-img img,.about-hero-img img,.lib-hero-img img{position:absolute;inset:0}
+      .home-hero-text,.sp-hero-text,.about-hero-text,.lib-hero-text{padding:8rem 5.75% 3rem}
+      .topics-grid{grid-template-columns:repeat(2,1fr)}
+      .formats-layout{grid-template-columns:1fr;gap:3rem}
+      .formats-image{max-width:560px;aspect-ratio:16/10}
+      .stats-inner{grid-template-columns:repeat(2,1fr);gap:3rem 2rem}.stat:not(:last-child)::after{display:none}
+      .audiences-grid{grid-template-columns:1fr;background:transparent;gap:1px}
+      .testimonial-layout,.home-test-layout{grid-template-columns:1fr;gap:2rem}
+      .bio-section{grid-template-columns:1fr;gap:3rem}.bio-image{position:static;max-width:520px}
+      .articles-grid{grid-template-columns:repeat(2,1fr)}
+      .book-layout{grid-template-columns:1fr;gap:3rem}.book-cover{width:260px;margin:0 auto}
+      .contact-page{grid-template-columns:1fr;gap:3rem}
+      .home-bio{grid-template-columns:1fr;gap:3rem}.home-bio-text{padding:2rem 0}
+      .impact-grid{grid-template-columns:repeat(2,1fr)}
+      .services-tabs{flex-direction:column;gap:1.5rem}
+      .courses-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none}.nav-hamburger{display:block}
+      .mobile-menu{display:flex}
+      .home-hero-text,.sp-hero-text,.about-hero-text,.lib-hero-text{padding:6rem 5.75% 3rem}
+      .topics-grid,.audiences-grid,.articles-grid,.videos-grid{grid-template-columns:1fr}
+      .contact-page{padding-top:7rem}.form-row{grid-template-columns:1fr}
+      .social-inner{flex-direction:column;gap:2rem;text-align:center}.social-links{flex-wrap:wrap;justify-content:center}
+      .footer-top{flex-direction:column;gap:2rem}.footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+      .footer-contact-row{flex-direction:column;gap:0.75rem}
+      .logo-bar::before,.logo-bar::after{width:120px}
+      .cta-section{height:480px}
+      .timeline-card{width:280px}
+      .home-hero-img,.sp-hero-img,.about-hero-img,.lib-hero-img{height:400px}
+    }
+    @media(max-width:480px){
+      .stats-inner,.impact-grid{grid-template-columns:1fr}
+      .footer-nav{flex-wrap:wrap;gap:1.5rem}
+      .course-footer{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo" onclick="showPage('home');return false">N'</a>
+    <ul class="nav-links">
+      <li><a href="#" data-page="home" class="active" onclick="showPage('home');return false">Home</a></li>
+      <li><a href="#" data-page="about" onclick="showPage('about');return false">About</a></li>
+      <li><a href="#" data-page="speaking" onclick="showPage('speaking');return false">Speaking</a></li>
+      <li><a href="#" data-page="library" onclick="showPage('library');return false">Library</a></li>
+      <li><a href="#" data-page="contact" onclick="showPage('contact');return false">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="showPage('home');closeMobile();return false">Home</a>
+    <a href="#" onclick="showPage('about');closeMobile();return false">About</a>
+    <a href="#" onclick="showPage('speaking');closeMobile();return false">Speaking</a>
+    <a href="#" onclick="showPage('library');closeMobile();return false">Library</a>
+    <a href="#" onclick="showPage('contact');closeMobile();return false">Contact</a>
+  </div>
+
+  <!-- ══════════════════════ HOME ══════════════════════ -->
+  <div id="page-home" class="page-section active">
+    <section class="home-hero">
+      <div class="home-hero-text"><div>
+        <h1 class="home-hero-title">Strategic communication at the <em>narrative layer.</em></h1>
+        <div class="home-hero-cta"><a href="#" class="btn btn-accent btn-lg" onclick="showPage('contact');return false">Let's Talk <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+      </div></div>
+      <div class="home-hero-img"><img src="Nancy01.jpg" alt="Nancy Kacungira"></div>
+    </section>
+
+    <div class="logo-bar"><div class="logo-track"><span class="logo-placeholder">BBC World News</span><span class="logo-placeholder">World Economic Forum</span><span class="logo-placeholder">FT Africa Summit</span><span class="logo-placeholder">IMF / World Bank</span><span class="logo-placeholder">TEDx</span><span class="logo-placeholder">Standard Bank</span><span class="logo-placeholder">Gates Foundation</span><span class="logo-placeholder">EAST Fest</span><span class="logo-placeholder">BBC World News</span><span class="logo-placeholder">World Economic Forum</span><span class="logo-placeholder">FT Africa Summit</span><span class="logo-placeholder">IMF / World Bank</span><span class="logo-placeholder">TEDx</span><span class="logo-placeholder">Standard Bank</span><span class="logo-placeholder">Gates Foundation</span><span class="logo-placeholder">EAST Fest</span></div></div>
+
+    <section class="section-white"><div class="container">
+      <div style="margin-bottom:3rem">
+        <h2 class="section-heading reveal" style="font-size:clamp(2.5rem,4.5vw,65px);letter-spacing:-1.3px">These are my <em>services</em></h2>
+      </div>
+      <div class="services-tabs reveal">
+        <div class="service-tab" data-tab="0">
+          <h3 class="service-tab-title">Private Advisory</h3>
+          <p class="service-tab-desc">Every session is tailored to you — your challenges, your goals, your pace. No fluff. Just real progress and honest conversations.</p>
+        </div>
+        <div class="service-tab muted" data-tab="1">
+          <h3 class="service-tab-title">Speaking &amp; Training</h3>
+          <p class="service-tab-desc">We help you define clear priorities, make confident decisions, and focus on what drives real results — not just busywork.</p>
+        </div>
+        <div class="service-tab muted" data-tab="2">
+          <h3 class="service-tab-title">Library</h3>
+          <p class="service-tab-desc">I'll work with you to build processes that support growth — from team alignment to decision frameworks.</p>
+        </div>
+      </div>
+      <div class="services-image reveal"><img src="Nancy15.jpg" alt="Nancy Kacungira speaking"></div>
+    </div></section>
+
+    <section class="section-cream"><div class="container">
+      <div class="home-bio reveal">
+        <div class="home-bio-text">
+          <h2 class="home-bio-title">This is the story of <em>my journey</em></h2>
+          <div class="home-bio-body">
+            <p style="margin-bottom:1rem">Nancy Kacungira is a lead presenter and foreign correspondent for BBC News, anchoring The World Today. With over fifteen years across Uganda, Kenya, Tanzania, and the UK, she has built a career at the intersection of storytelling, influence, and strategic communication.</p>
+            <p>Her journey began at Power FM in Kampala while studying at Makerere University — graduating with first-class honours. She won the inaugural BBC Komla Dumor Award in 2015.</p>
+          </div>
+        </div>
+        <div class="home-bio-image"><img src="DSC00256.jpg" alt="Nancy at BBC"></div>
+      </div>
+    </div></section>
+
+    <section class="section-dark"><div class="container">
+      <h2 class="section-heading reveal" style="text-align:center;font-size:clamp(2.5rem,4.5vw,65px);letter-spacing:-1.3px;margin-bottom:3.5rem">This is the scale of <em>my impact</em></h2>
+      <div class="impact-grid">
+        <div class="impact-card reveal"><div class="impact-number" data-count="500" data-suffix="+">0</div><div class="impact-label">This is a sample<br>audience size.</div></div>
+        <div class="impact-card reveal"><div class="impact-number" data-count="8">0</div><div class="impact-label">These are<br>countries</div></div>
+        <div class="impact-card reveal"><div class="impact-number" data-count="12">0</div><div class="impact-label">These major<br>conferences</div></div>
+        <div class="impact-card reveal"><div class="impact-number" data-count="200" data-suffix="+">0</div><div class="impact-label">These are minutes<br>spoken</div></div>
+      </div>
+    </div></section>
+
+    <section class="section-white"><div class="container">
+      <div class="home-test-layout reveal">
+        <div class="test-heading-col">
+          <h2 class="section-heading" style="font-size:clamp(2.5rem,4.5vw,65px);letter-spacing:-1.3px">What my clients <em>say</em></h2>
+          <div class="test-nav" style="flex-direction:row">
+            <button class="test-nav-btn" data-dir="-1" data-carousel="homeCarousel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></button>
+            <button class="test-nav-btn" data-dir="1" data-carousel="homeCarousel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+        <div class="test-carousel" id="homeCarousel">
+          <div class="test-slide active">
+            <p class="test-text">Nancy brought a rare combination of intellectual depth and warmth to our stage. She didn't just moderate — she elevated the entire conversation. Her ability to connect with diverse audiences while maintaining rigour made her the highlight of our programme.</p>
+            <div class="test-author-row"><div class="test-meta"><p class="test-name">John Doe</p><p class="test-role">Comms Manager, World Economic Forum</p></div></div>
+          </div>
+          <div class="test-slide">
+            <p class="test-text">Our audience left with a completely new framework for strategic communication. Nancy makes the complex accessible without dumbing it down. Months later, we're still referencing her insights.</p>
+            <div class="test-author-row"><div class="test-meta"><p class="test-name">Jane Smith</p><p class="test-role">Programme Director, FT Africa Summit</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="cta-section"><div class="cta-bg"><img src="DSC00256.jpg" alt=""></div><div class="cta-inner">
+      <h2 class="cta-title">Ready to work <em>together?</em></h2>
+      <p class="cta-desc">Whether you need a keynote, advisor, or moderator — Nancy would love to hear from you.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-dark" onclick="showPage('speaking');return false">Explore Speaking <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#" class="btn btn-accent" onclick="showPage('contact');return false">Get in Touch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div></section>
+  </div>
+
+  <!-- ══════════════════════ SPEAKING ══════════════════════ -->
+  <div id="page-speaking" class="page-section">
+    <section class="sp-hero">
+      <div class="sp-hero-text"><div>
+        <p class="sp-hero-eyebrow">Speaking &amp; Moderation</p>
+        <h1 class="sp-hero-title">Shaping how leaders <em>communicate.</em></h1>
+        <p class="sp-hero-desc">From the World Economic Forum to the BBC newsroom, Nancy brings clarity to complex narratives — helping audiences rethink how they speak, influence, and lead.</p>
+        <div class="sp-hero-cta"><a href="#" class="btn btn-dark btn-lg" onclick="showPage('contact');return false">Let's Talk <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+      </div></div>
+      <div class="sp-hero-img"><img src="Nancy15.jpg" alt="Nancy Kacungira" data-parallax="0.15"></div>
+    </section>
+
+    <div class="logo-bar"><div class="logo-track"><span class="logo-placeholder">BBC World News</span><span class="logo-placeholder">World Economic Forum</span><span class="logo-placeholder">FT Africa Summit</span><span class="logo-placeholder">IMF / World Bank</span><span class="logo-placeholder">TEDx</span><span class="logo-placeholder">Standard Bank</span><span class="logo-placeholder">Gates Foundation</span><span class="logo-placeholder">EAST Fest</span><span class="logo-placeholder">BBC World News</span><span class="logo-placeholder">World Economic Forum</span><span class="logo-placeholder">FT Africa Summit</span><span class="logo-placeholder">IMF / World Bank</span><span class="logo-placeholder">TEDx</span><span class="logo-placeholder">Standard Bank</span><span class="logo-placeholder">Gates Foundation</span><span class="logo-placeholder">EAST Fest</span></div></div>
+
+    <section class="section-white"><div class="container"><div style="margin-bottom:3.5rem"><p class="section-eyebrow reveal">Topics &amp; Themes</p><h2 class="section-heading reveal">What Nancy <em>speaks about</em></h2><p class="section-desc reveal">Every talk is rooted in real experience — from the newsroom to the boardroom.</p></div>
+    <div class="topics-grid reveal-stagger">
+      <div class="topic-card reveal"><span class="topic-number">01</span><h3 class="topic-title">Strategic Communication</h3><p class="topic-desc">How to craft messages that cut through noise, build trust, and move people to action.</p></div>
+      <div class="topic-card reveal"><span class="topic-number">02</span><h3 class="topic-title">Narrative Intelligence</h3><p class="topic-desc">Understanding the stories that shape perception — in media, business, and politics.</p></div>
+      <div class="topic-card reveal"><span class="topic-number">03</span><h3 class="topic-title">African Narratives</h3><p class="topic-desc">Challenging outdated portrayals with nuanced, evidence-based storytelling.</p></div>
+      <div class="topic-card reveal"><span class="topic-number">04</span><h3 class="topic-title">Leadership &amp; Presence</h3><p class="topic-desc">Building presence that commands rooms — through clarity, not volume.</p></div>
+      <div class="topic-card reveal"><span class="topic-number">05</span><h3 class="topic-title">Media &amp; Discourse</h3><p class="topic-desc">How media shapes opinion and how to engage more effectively with journalists.</p></div>
+      <div class="topic-card reveal"><span class="topic-number">06</span><h3 class="topic-title">Women in Leadership</h3><p class="topic-desc">Navigating visibility and authority — drawn from Nancy's own journey.</p></div>
+    </div></div></section>
+
+    <div class="stats-strip"><div class="stats-inner">
+      <div class="stat reveal"><div class="stat-number" data-count="500" data-suffix="+">0</div><div class="stat-label">Audience members reached</div></div>
+      <div class="stat reveal"><div class="stat-number" data-count="12">0</div><div class="stat-label">Countries spoken in</div></div>
+      <div class="stat reveal"><div class="stat-number" data-count="8">0</div><div class="stat-label">Major conferences</div></div>
+      <div class="stat reveal"><div class="stat-number" data-count="200" data-suffix="+">0</div><div class="stat-label">Minutes on stage</div></div>
+    </div></div>
+
+    <section class="section-dark"><div class="container"><div style="margin-bottom:3.5rem"><p class="section-eyebrow reveal">Who This Is For</p><h2 class="section-heading reveal">Designed for leaders who need to <em>be heard</em></h2></div>
+    <div class="audiences-grid">
+      <div class="audience-card reveal-left"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><p class="audience-name">C-Suite &amp; Senior Leaders</p><p class="audience-desc">Executives who need to communicate vision and inspire confidence.</p></div></div>
+      <div class="audience-card reveal-right"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><p class="audience-name">Communications Teams</p><p class="audience-desc">Professionals sharpening narrative strategy and engagement.</p></div></div>
+      <div class="audience-card reveal-left"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><p class="audience-name">Event Organisers</p><p class="audience-desc">Curators seeking a speaker who can anchor and elevate discussions.</p></div></div>
+      <div class="audience-card reveal-right"><div class="audience-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><p class="audience-name">Founders &amp; Entrepreneurs</p><p class="audience-desc">Builders telling their story with conviction.</p></div></div>
+    </div></div></section>
+
+    <section class="section-cream"><div class="container"><div class="formats-layout"><div>
+      <p class="section-eyebrow reveal">Formats</p><h2 class="section-heading reveal">Tailored to your <em>event</em></h2>
+      <div class="format-list">
+        <div class="format-item reveal"><div class="format-left"><span class="format-dot"></span><span class="format-name">Keynote Address</span></div><span class="format-tag">30–60 min</span><span class="line-draw"></span></div>
+        <div class="format-item reveal"><div class="format-left"><span class="format-dot"></span><span class="format-name">Panel Moderation</span></div><span class="format-tag">45–90 min</span><span class="line-draw"></span></div>
+        <div class="format-item reveal"><div class="format-left"><span class="format-dot"></span><span class="format-name">Fireside Chat</span></div><span class="format-tag">30–45 min</span><span class="line-draw"></span></div>
+        <div class="format-item reveal"><div class="format-left"><span class="format-dot"></span><span class="format-name">Workshop</span></div><span class="format-tag">Half/full day</span><span class="line-draw"></span></div>
+        <div class="format-item reveal"><div class="format-left"><span class="format-dot"></span><span class="format-name">MC &amp; Hosting</span></div><span class="format-tag">Custom</span><span class="line-draw"></span></div>
+      </div></div>
+      <div class="formats-image reveal"><img src="Nancy02.jpg" alt="Nancy moderating"></div>
+    </div></div></section>
+
+    <section class="section-dark"><div class="container"><p class="section-eyebrow reveal">Testimonials</p><h2 class="section-heading reveal" style="margin-bottom:3rem">What organisers <em>say</em></h2>
+    <div class="testimonial-layout reveal"><div class="testimonial-nav">
+      <button class="testimonial-nav-btn" data-dir="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></button>
+      <button class="testimonial-nav-btn" data-dir="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+    </div><div class="testimonial-carousel" id="spCarousel">
+      <div class="testimonial-slide active"><p class="testimonial-text">Nancy brought a rare combination of intellectual depth and warmth to our stage. She didn't just moderate — she elevated the entire conversation.</p><div class="testimonial-author-row"><div class="testimonial-meta"><p class="testimonial-name">John Doe</p><p class="testimonial-role">Comms Manager, World Economic Forum</p></div></div></div>
+      <div class="testimonial-slide"><p class="testimonial-text">Nancy's keynote on narrative intelligence gave our leadership team a shared language. Months later, we're still referencing her frameworks.</p><div class="testimonial-author-row"><div class="testimonial-meta"><p class="testimonial-name">Jane Smith</p><p class="testimonial-role">Programme Director, FT Africa Summit</p></div></div></div>
+    </div></div></div></section>
+
+    <section class="cta-section"><div class="cta-bg"><img src="DSC00256.jpg" alt=""></div><div class="cta-inner">
+      <h2 class="cta-title">Ready to work <em>together?</em></h2>
+      <p class="cta-desc">Whether you need a keynote, advisor, or moderator — Nancy would love to hear from you.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-dark" onclick="showPage('speaking');return false">Explore Speaking <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#" class="btn btn-accent" onclick="showPage('contact');return false">Get in Touch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div></section>
+  </div>
+
+  <!-- ══════════════════════ ABOUT ══════════════════════ -->
+  <div id="page-about" class="page-section">
+    <section class="about-hero">
+      <div class="about-hero-text"><div>
+        <p class="about-hero-eyebrow">About Nancy</p>
+        <h1 class="about-hero-title">A journalist with a voice for <em>strategic communication</em></h1>
+        <div class="about-hero-cta"><a href="#" class="btn btn-dark btn-lg" onclick="showPage('contact');return false">Let's Talk <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+      </div></div>
+      <div class="about-hero-img"><img src="Nancy07.jpg" alt="Nancy Kacungira"></div>
+    </section>
+
+    <section class="section-white"><div class="container bio-section">
+      <div class="bio-image reveal"><img src="Nancy02.jpg" alt="Nancy portrait"></div>
+      <div class="bio-text">
+        <p class="section-eyebrow reveal">The Full Story</p>
+        <h2 class="section-heading reveal">From Kampala's airwaves to the <em>world stage</em></h2>
+        <p class="bio-paragraph reveal">Nancy Kacungira is a lead presenter and foreign correspondent for BBC News, anchoring The World Today. With over fifteen years across Uganda, Kenya, Tanzania, and the UK, she has built a career at the intersection of storytelling, influence, and strategic communication.</p>
+        <p class="bio-paragraph reveal">Her journey began at Power FM in Kampala while studying at Makerere University — graduating with first-class honours. She moved to NTV Uganda, then Kenya's KTN, before winning the inaugural BBC Komla Dumor Award in 2015.</p>
+        <p class="bio-paragraph reveal">At the BBC, she has presented Focus on Africa, World Business Report, In Business Africa, and moderated at the World Economic Forum, FT Africa Summit, and IMF/World Bank Spring Meetings.</p>
+        <p class="bio-paragraph reveal">She holds an MA in International Communications from the University of Leeds (distinction) and co-founded Blu Flamingo, a digital agency across four African markets.</p>
+      </div>
+    </div></section>
+
+    <section class="section-dark" id="quoteSection"><div class="container"><div class="quote-section">
+      <p class="section-eyebrow" style="text-align:center;color:var(--text-light-muted)">A Personal Note</p>
+      <p class="quote-text" id="quoteText"></p>
+      <p class="quote-attr">— Nancy Kacungira</p>
+    </div></div></section>
+
+    <section class="section-cream"><div class="container">
+      <p class="section-eyebrow reveal">Highlights</p>
+      <h2 class="section-heading reveal">Milestones that <em>define the journey</em></h2>
+      <div class="timeline-track-wrapper" id="timelineWrapper"><div class="timeline-track"><div class="timeline-progress" id="timelineProgress"></div>
+        <div class="timeline-card"><span class="timeline-year">2006</span><h3 class="timeline-title">Makerere University</h3><p class="timeline-desc">First-class honours in Industrial and Fine Art.</p></div>
+        <div class="timeline-card"><span class="timeline-year">2015</span><h3 class="timeline-title">Komla Dumor Award</h3><p class="timeline-desc">Won the inaugural BBC award from 200 applicants.</p></div>
+        <div class="timeline-card"><span class="timeline-year">2016</span><h3 class="timeline-title">Presidential Debate</h3><p class="timeline-desc">Co-moderated Uganda's national debate.</p></div>
+        <div class="timeline-card"><span class="timeline-year">2017</span><h3 class="timeline-title">BBC Focus on Africa</h3><p class="timeline-desc">Debuted as BBC World News presenter.</p></div>
+      </div></div>
+      <div class="scroll-hint reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Scroll to explore</div>
+    </div></section>
+
+    <section class="cta-section"><div class="cta-bg"><img src="DSC00256.jpg" alt=""></div><div class="cta-inner">
+      <h2 class="cta-title">Ready to work <em>together?</em></h2>
+      <p class="cta-desc">Whether you need a keynote, advisor, or moderator — Nancy would love to hear from you.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-dark" onclick="showPage('speaking');return false">Explore Speaking <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#" class="btn btn-accent" onclick="showPage('contact');return false">Get in Touch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div></section>
+  </div>
+
+  <!-- ══════════════════════ LIBRARY ══════════════════════ -->
+  <div id="page-library" class="page-section">
+    <section class="lib-hero">
+      <div class="lib-hero-text"><div>
+        <p class="lib-hero-eyebrow">Library</p>
+        <h1 class="lib-hero-title">Ideas worth <em>returning to.</em></h1>
+        <p class="lib-hero-desc">Articles, talks, resources, and courses on communication, leadership, and narrative.</p>
+        <div class="lib-hero-cta"><a href="#" class="btn btn-dark btn-lg" onclick="showPage('contact');return false">Let's Talk <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+      </div></div>
+      <div class="lib-hero-img"><img src="DSC00256.jpg" alt="Nancy Kacungira at BBC"></div>
+    </section>
+
+    <section class="section-cream"><div class="container">
+      <p class="section-eyebrow reveal">Articles</p><h2 class="section-heading reveal">Thought leadership in <em>writing</em></h2>
+      <div class="filter-tabs reveal"><button class="filter-tab active">All</button><button class="filter-tab">Communication</button><button class="filter-tab">Leadership</button><button class="filter-tab">Africa</button></div>
+      <div class="articles-grid reveal-stagger">
+        <div class="article-card reveal"><div class="article-card-inner"><div class="article-thumb"><div class="article-thumb-inner" style="background:linear-gradient(160deg,#e8e0d6,#d5cbc0);width:100%;height:100%"></div></div><div class="article-body"><span class="article-tag">Communication</span><h3 class="article-title">The Art of Saying No Without Losing Trust</h3><p class="article-excerpt">Why boundary-setting is a leadership skill.</p><a href="#" class="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div></div></div>
+        <div class="article-card reveal"><div class="article-card-inner"><div class="article-thumb"><div class="article-thumb-inner" style="background:linear-gradient(160deg,#e8e0d6,#d5cbc0);width:100%;height:100%"></div></div><div class="article-body"><span class="article-tag">Africa</span><h3 class="article-title">Can Africa Limit Emissions and Provide Jobs?</h3><p class="article-excerpt">Energy access vs climate commitments.</p><a href="#" class="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div></div></div>
+        <div class="article-card reveal"><div class="article-card-inner"><div class="article-thumb"><div class="article-thumb-inner" style="background:linear-gradient(160deg,#e8e0d6,#d5cbc0);width:100%;height:100%"></div></div><div class="article-body"><span class="article-tag">Narrative</span><h3 class="article-title">Who Gets to Tell Africa's Story?</h3><p class="article-excerpt">Power dynamics of narrative framing.</p><a href="#" class="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div></div></div>
+      </div>
+    </div></section>
+
+    <section class="section-white"><div class="container">
+      <p class="section-eyebrow reveal">Talks</p><h2 class="section-heading reveal">Watch Nancy in <em>action</em></h2>
+      <div class="videos-grid">
+        <div class="video-card reveal"><div class="video-thumb"><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="9,6 19,12 9,18"/></svg></div></div><div class="video-body"><h3 class="video-title">TEDx: Reframing the African Narrative</h3><p class="video-meta">18 min</p></div></div>
+        <div class="video-card reveal"><div class="video-thumb"><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="9,6 19,12 9,18"/></svg></div></div><div class="video-body"><h3 class="video-title">WEF: Fourth Industrial Revolution</h3><p class="video-meta">42 min</p></div></div>
+      </div>
+    </div></section>
+
+    <section class="section-dark"><div class="container">
+      <p class="section-eyebrow reveal">Resources</p><h2 class="section-heading reveal">Tools you can use <em>today</em></h2>
+      <div class="resources-list">
+        <div class="resource-item reveal"><div class="resource-left"><div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><p class="resource-title">Narrative Clarity Toolkit</p><p class="resource-desc">12-page guide to structuring your message.</p></div></div><a href="#" class="resource-action">Download <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+        <div class="resource-item reveal"><div class="resource-left"><div class="resource-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="resource-title">Communication Diagnostic</p><p class="resource-desc">5-minute self-assessment quiz.</p></div></div><a href="#" class="resource-action">Take quiz <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+      </div>
+    </div></section>
+
+    <section class="section-dark" style="padding-top:0"><div class="container">
+      <p class="section-eyebrow reveal">Courses and learning</p>
+      <h2 class="section-heading reveal">Programmes designed to <em>transform</em></h2>
+      <p class="section-desc reveal" style="margin-bottom:2rem">Each course blends Nancy's real-world experience with practical frameworks you can apply immediately.</p>
+      <div class="courses-grid">
+        <div class="course-card reveal-left">
+          <div class="course-thumb"><img src="Nancy15.jpg" alt="Course"><span class="course-badge course-badge-live">Live Cohort</span></div>
+          <div class="course-body">
+            <div class="course-meta"><span class="course-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 Weeks</span><span class="course-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Max 25 Learners</span><span class="course-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Live + Recorded</span></div>
+            <h3 class="course-title">Narrative Mastery for Leaders</h3>
+            <p class="course-desc">A deep-dive programme for executives and senior communicators. Learn to craft narratives that shift perception, build trust, and drive action — using the same frameworks Nancy applies in newsrooms and boardrooms.</p>
+            <div class="course-footer"><div class="course-price">$1,200 <span class="course-price-note">/ per person</span></div><a href="#" class="btn btn-accent">Enrol Now <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+          </div>
+        </div>
+        <div class="course-card reveal-right">
+          <div class="course-thumb"><img src="Nancy07.jpg" alt="Course"><span class="course-badge course-badge-self">Self-Paced</span></div>
+          <div class="course-body">
+            <div class="course-meta"><span class="course-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4 Weeks</span><span class="course-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>12 Modules</span><span class="course-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Lifetime Access</span></div>
+            <h3 class="course-title">Strategic Speaking Foundations</h3>
+            <p class="course-desc">Build confidence and presence from the ground up. This self-paced programme covers vocal delivery, audience psychology, structure, and storytelling — essential skills for anyone who needs to be heard.</p>
+            <div class="course-footer"><div class="course-price">$450 <span class="course-price-note">/ lifetime access</span></div><a href="#" class="btn btn-dark">Start Learning <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="section-dark book-section" style="padding-top:0"><div class="book-glow"></div><div class="container"><div class="book-layout">
+      <div class="book-cover reveal">Book cover</div>
+      <div class="book-text"><span class="book-badge reveal">Coming Soon</span><h2 class="section-heading reveal">Nancy's first <em>book</em></h2><p class="reveal" style="font-size:18px;line-height:1.65;color:var(--text-light-muted);margin-bottom:1.5rem">A deep exploration of narrative intelligence — how stories shape perception, power, and progress.</p><div class="reveal"><a href="#" class="btn btn-accent">Join Waitlist <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div></div>
+    </div></div></section>
+  </div>
+
+  <!-- ══════════════════════ CONTACT ══════════════════════ -->
+  <div id="page-contact" class="page-section">
+    <section class="contact-page">
+      <div class="contact-info">
+        <p class="section-eyebrow" style="opacity:0;animation:fadeUp 0.7s 0.1s ease forwards">Get in Touch</p>
+        <h2>Let's start a <em>conversation.</em></h2>
+        <p class="contact-info-desc">Whether you're planning an event, exploring advisory, or have a question — we'd love to hear from you.</p>
+        <div class="contact-details">
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><p class="contact-detail-label">Phone</p><p class="contact-detail-value"><a href="tel:+256700998888">+256 700 998 888</a></p></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><p class="contact-detail-label">Email</p><p class="contact-detail-value"><a href="mailto:info@nancykacungira.com">info@nancykacungira.com</a></p></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="contact-detail-label">Hours</p><p class="contact-detail-value">Mon–Fri, 9AM–5PM EST</p></div></div>
+        </div>
+        <div class="availability-note"><p class="availability-title">Booking Timeline</p><p class="availability-text">Speaking: 4–8 weeks advance. Advisory: 1–2 weeks for initial consultation.</p></div>
+      </div>
+      <div class="contact-form-wrapper">
+        <h2 class="form-title">Send an enquiry</h2><p class="form-subtitle">We'll respond within 48 hours.</p>
+        <div class="form-row"><div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="First name"></div><div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Last name"></div></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="you@company.com"></div>
+        <div class="form-group"><label class="form-label">Organisation</label><input type="text" class="form-input" placeholder="Company name"></div>
+        <div class="form-group"><label class="form-label">Enquiry Type</label><select class="form-select"><option value="" disabled selected>Select</option><option>Speaking</option><option>Moderation</option><option>Workshop</option><option>Advisory</option><option>Media</option><option>General</option></select></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Event Date</label><input type="date" class="form-input"></div><div class="form-group"><label class="form-label">Budget</label><select class="form-select"><option value="" disabled selected>Select</option><option>Under $5k</option><option>$5k–$10k</option><option>$10k–$25k</option><option>$25k+</option></select></div></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us about your event..."></textarea></div>
+        <div style="margin-top:0.5rem"><button class="btn btn-accent" type="submit">Send Enquiry <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></div>
+      </div>
+    </section>
+    <section class="social-strip"><div class="social-inner">
+      <p class="social-text reveal">Follow Nancy <em>across platforms</em></p>
+      <div class="social-links" id="socialLinks"><a href="#" class="social-pill">Instagram</a><a href="#" class="social-pill">Facebook</a><a href="#" class="social-pill">X</a><a href="#" class="social-pill">LinkedIn</a></div>
+    </div></section>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><a href="#" class="footer-logo" onclick="showPage('home');return false">Nancy Kacungira</a><div class="footer-contact-row"><a href="tel:+256700998888"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+256 700 998 888</a><a href="mailto:info@nancykacungira.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@nancykacungira.com</a></div></div>
+        <div class="footer-nav"><a href="#" onclick="showPage('home');return false">Home</a><a href="#" onclick="showPage('about');return false">About</a><a href="#" onclick="showPage('speaking');return false">Speaking</a><a href="#" onclick="showPage('library');return false">Library</a><a href="#" onclick="showPage('contact');return false">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-social"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">X</a></div><p class="footer-copy">&copy; 2026 Nancy Kacungira. All rights reserved</p></div>
+    </div>
+  </footer>
+
+  <script>
+    /* ══════════ PAGE ROUTING ══════════ */
+    function showPage(page){
+      document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+      document.getElementById('page-'+page).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+      document.querySelector(`.nav-links a[data-page="${page}"]`)?.classList.add('active');
+      window.scrollTo({top:0,behavior:'instant'});
+      setTimeout(()=>{
+        document.querySelectorAll('.page-section.active .reveal:not(.visible),.page-section.active .reveal-left:not(.visible),.page-section.active .reveal-right:not(.visible)').forEach(el=>revealObs.observe(el));
+      },50);
+      const nav=document.getElementById('mainNav');
+      nav.classList.remove('over-dark');
+      // Re-init counters
+      document.querySelectorAll('.page-section.active [data-count]').forEach(el=>{el.textContent='0';counterObs.observe(el);});
+    }
+
+    /* ══════════ HAMBURGER ══════════ */
+    const hamburger=document.getElementById('hamburgerBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobileMenu.classList.toggle('open');});
+    function closeMobile(){hamburger.classList.remove('open');mobileMenu.classList.remove('open');}
+
+    /* ══════════ SCROLL REVEAL ══════════ */
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revealObs.observe(el));
+
+    /* ══════════ NAV SCROLL ══════════ */
+    window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40);},{passive:true});
+
+    /* ══════════ COUNTER ══════════ */
+    const counterObs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){const el=entry.target;const target=parseInt(el.dataset.count);const suffix=el.dataset.suffix||'';let current=0;const step=Math.max(1,Math.floor(target/40));const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer);}el.textContent=current+suffix;},30);counterObs.unobserve(el);}});},{threshold:0.5});
+    document.querySelectorAll('[data-count]').forEach(el=>counterObs.observe(el));
+
+    /* ══════════ CAROUSELS ══════════ */
+    function initCarousel(containerId){
+      const container=document.getElementById(containerId);
+      if(!container)return;
+      const slides=container.querySelectorAll('.test-slide,.testimonial-slide');
+      let current=0;
+      function go(n){slides[current].classList.remove('active');current=(n+slides.length)%slides.length;slides[current].classList.add('active');}
+      document.querySelectorAll(`[data-carousel="${containerId}"],.testimonial-nav-btn`).forEach(btn=>{
+        if(btn.dataset.carousel===containerId||btn.closest('.testimonial-layout')?.querySelector(`#${containerId},.testimonial-carousel`)){
+          btn.addEventListener('click',()=>go(current+parseInt(btn.dataset.dir)));
+        }
+      });
+      setInterval(()=>go(current+1),6000);
+    }
+    initCarousel('homeCarousel');
+
+    // Speaking carousel
+    const spSlides=document.querySelectorAll('#spCarousel .testimonial-slide');
+    let spCurrent=0;
+    function spGo(n){spSlides[spCurrent].classList.remove('active');spCurrent=(n+spSlides.length)%spSlides.length;spSlides[spCurrent].classList.add('active');}
+    document.querySelectorAll('.testimonial-nav-btn').forEach(btn=>{btn.addEventListener('click',()=>spGo(spCurrent+parseInt(btn.dataset.dir)));});
+    setInterval(()=>spGo(spCurrent+1),6000);
+
+    /* ══════════ TIMELINE ══════════ */
+    const tw=document.getElementById('timelineWrapper'),tp=document.getElementById('timelineProgress');
+    if(tw&&tp){tw.addEventListener('scroll',()=>{tp.style.width=(tw.scrollLeft/(tw.scrollWidth-tw.clientWidth)*100)+'%';});}
+
+    /* ══════════ QUOTE WORD REVEAL ══════════ */
+    const quoteWords="I believe every person, organisation, and continent has a story worth telling well. My work is about helping people find that story — and giving them the tools to tell it with clarity, confidence, and conviction.".split(' ');
+    const quoteEl=document.getElementById('quoteText');
+    if(quoteEl){
+      quoteWords.forEach(w=>{const sp=document.createElement('span');sp.className='word';sp.textContent=w;quoteEl.appendChild(sp);});
+      const words=quoteEl.querySelectorAll('.word');
+      const quoteObs=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){words.forEach((w,i)=>{setTimeout(()=>w.classList.add('lit'),i*60);});quoteObs.unobserve(entries[0].target);}},{threshold:0.3});
+      quoteObs.observe(document.getElementById('quoteSection'));
+    }
+
+    /* ══════════ 3D TILT ══════════ */
+    document.querySelectorAll('.article-card').forEach(card=>{
+      const inner=card.querySelector('.article-card-inner');
+      card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-0.5;const y=(e.clientY-r.top)/r.height-0.5;inner.style.transform=`perspective(800px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`;});
+      card.addEventListener('mouseleave',()=>{inner.style.transform='perspective(800px) rotateY(0) rotateX(0)';});
+    });
+
+    /* ══════════ FILTER TABS ══════════ */
+    document.querySelectorAll('.filter-tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));t.classList.add('active');});});
+
+    /* ══════════ SERVICE TABS ══════════ */
+    document.querySelectorAll('.service-tab').forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        document.querySelectorAll('.service-tab').forEach(t=>t.classList.add('muted'));
+        tab.classList.remove('muted');
+      });
+    });
+
+    /* ══════════ SOCIAL WAVE ══════════ */
+    const socialObs=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){document.querySelectorAll('.social-pill').forEach((el,i)=>{setTimeout(()=>{el.style.transition='opacity 0.5s ease, transform 0.5s ease';el.classList.add('visible');},i*120);});socialObs.unobserve(entries[0].target);}},{threshold:0.3});
+    const sl=document.getElementById('socialLinks');if(sl)socialObs.observe(sl);
+  </script>
+</body>
+</html>
