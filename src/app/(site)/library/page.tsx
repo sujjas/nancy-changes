@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
+import ArticlesSection from '@/components/ArticlesSection';
 import { getArticles } from '@/sanity/lib/queries';
 import { programmes } from './data';
 
@@ -27,27 +28,7 @@ export default async function LibraryPage() {
       <section className="section-cream" id="articles"><div className="container">
         <p className="section-eyebrow reveal">Articles</p>
         <h2 className="section-heading reveal">Thought leadership in <em>writing</em></h2>
-        <div className="filter-tabs reveal">
-          <button className="filter-tab active">All</button>
-          <button className="filter-tab">Communication</button>
-          <button className="filter-tab">Leadership</button>
-          <button className="filter-tab">Africa</button>
-        </div>
-        <div className="articles-grid reveal-stagger">
-          {articles.map((article: any) => (
-            <Link key={article.slug.current} href={`/library/articles/${article.slug.current}`} className="article-card reveal" style={{textDecoration:'none',display:'block'}}>
-              <div className="article-card-inner">
-                <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
-                <div className="article-body">
-                  <span className="article-tag">{article.tag}</span>
-                  <h3 className="article-title">{article.title}</h3>
-                  <p className="article-excerpt">{article.excerpt}</p>
-                  <span className="article-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ArticlesSection articles={articles} />
       </div></section>
 
       <section className="section-white"><div className="container">
