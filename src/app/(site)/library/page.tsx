@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
-import { articles, programmes } from './data';
+import { getArticles } from '@/sanity/lib/queries';
+import { programmes } from './data';
 
-export default function LibraryPage() {
+export const revalidate = 60;
+
+export default async function LibraryPage() {
+  const articles = await getArticles();
   return (
     <>
       <section className="lib-hero">
@@ -30,8 +34,8 @@ export default function LibraryPage() {
           <button className="filter-tab">Africa</button>
         </div>
         <div className="articles-grid reveal-stagger">
-          {articles.map((article) => (
-            <Link key={article.slug} href={`/library/articles/${article.slug}`} className="article-card reveal" style={{textDecoration:'none',display:'block'}}>
+          {articles.map((article: any) => (
+            <Link key={article.slug.current} href={`/library/articles/${article.slug.current}`} className="article-card reveal" style={{textDecoration:'none',display:'block'}}>
               <div className="article-card-inner">
                 <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
                 <div className="article-body">
