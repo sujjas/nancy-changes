@@ -25,9 +25,9 @@ export default function ArticlesSection({ articles }: { articles: any[] }) {
           </button>
         ))}
       </div>
-      <div className="articles-grid reveal-stagger">
+      <div className="articles-grid">
         {filtered.map((article) => (
-          <Link key={article.slug.current} href={`/library/articles/${article.slug.current}`} className="article-card reveal" style={{textDecoration:'none',display:'block'}}>
+          <Link key={article.slug.current} href={`/library/articles/${article.slug.current}`} className="article-card" style={{textDecoration:'none',display:'block'}}>
             <div className="article-card-inner">
               <div className="article-thumb"><div className="article-thumb-inner" style={{background:'linear-gradient(160deg,#e8e0d6,#d5cbc0)',width:'100%',height:'100%'}}></div></div>
               <div className="article-body">

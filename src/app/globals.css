@@ -245,7 +245,7 @@ main{animation:pageFadeIn 0.45s cubic-bezier(0.4,0,0.2,1) both}
 
 .filter-tabs{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap}
 .filter-tab{font-family:var(--sans);font-size:15px;font-weight:600;padding:10px 24px;border-radius:var(--r-btn);border:1.5px solid rgba(75,25,17,0.1);background:transparent;color:var(--text-italic);cursor:pointer;transition:all var(--ease)}.filter-tab:hover{border-color:rgba(75,25,17,0.25);color:var(--text-primary)}.filter-tab.active{background:var(--bg-dark);color:var(--text-light);border-color:var(--bg-dark)}
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(75,25,17,0.06)}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 .article-card{background:var(--bg-cream);overflow:hidden;transition:all var(--ease)}.article-card:hover{z-index:2}
 .article-card-inner{transition:transform 0.3s ease;will-change:transform}
 .article-thumb{aspect-ratio:16/10;background:linear-gradient(160deg,#e8e0d6,#d5cbc0);overflow:hidden}.article-thumb-inner{width:100%;height:100%;transition:transform 6s ease}.article-card:hover .article-thumb-inner{transform:scale(1.06)}
