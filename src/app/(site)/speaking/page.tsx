@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
-import RotatingImage from '@/components/RotatingImage';
+import FormatsAccordion from '@/components/FormatsAccordion';
 
 export default function SpeakingPage() {
   return (
@@ -11,16 +11,17 @@ export default function SpeakingPage() {
           <h1 className="sp-hero-title">Shaping how leaders <em>communicate.</em></h1>
           <p className="sp-hero-desc">From the World Economic Forum to the BBC newsroom, Nancy brings clarity to complex narratives — helping audiences rethink how they speak, influence, and lead.</p>
           <div className="sp-hero-cta">
-            <Link href="/contact" className="btn btn-dark btn-lg">
-              Let&apos;s Talk{' '}
+            <Link href="#topics" className="btn btn-dark btn-lg">
+              Explore Topics{' '}
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </Link>
           </div>
         </div></div>
-        <div className="sp-hero-img"><img src="/nancy-6.jpg" alt="Nancy Kacungira" data-parallax="0.15" /></div>
+        <div className="sp-hero-img"><img src="/nancy-8.jpg" alt="Nancy Kacungira speaking at the African Markets Conference" data-parallax="0.15" /></div>
       </section>
 
       <div className="logo-bar">
+        <p className="logo-bar-eyebrow">As featured in</p>
         <div className="logo-row">
           <img src="/logos/BBC world news.png" alt="BBC World News" className="logo-img" />
           <img src="/logos/World Economic forum.png" alt="World Economic Forum" className="logo-img" />
@@ -30,7 +31,7 @@ export default function SpeakingPage() {
         </div>
       </div>
 
-      <section className="section-white"><div className="container">
+      <section className="section-white" id="topics"><div className="container">
         <div style={{marginBottom:'3.5rem'}}>
           <p className="section-eyebrow reveal">Topics &amp; Themes</p>
           <h2 className="section-heading reveal">What Nancy <em>speaks about</em></h2>
@@ -46,11 +47,10 @@ export default function SpeakingPage() {
         </div>
       </div></section>
 
-
       <section className="section-dark"><div className="container">
         <div style={{marginBottom:'3.5rem'}}>
           <p className="section-eyebrow reveal">Who This Is For</p>
-          <h2 className="section-heading reveal">Designed for leaders who need to <em>be heard</em></h2>
+          <h2 className="section-heading reveal">Who <em>books Nancy</em></h2>
         </div>
         <div className="audiences-grid">
           <div className="audience-card reveal-left">
@@ -90,20 +90,7 @@ export default function SpeakingPage() {
       </div></section>
 
       <section className="section-cream"><div className="container">
-        <div className="formats-layout">
-          <div>
-            <p className="section-eyebrow reveal">Formats</p>
-            <h2 className="section-heading reveal">Tailored to your <em>event</em></h2>
-            <div className="format-list">
-              <div className="format-item reveal"><div className="format-left"><span className="format-dot"></span><span className="format-name">Keynote Address</span></div><span className="format-tag">30–60 min</span><span className="line-draw"></span></div>
-              <div className="format-item reveal"><div className="format-left"><span className="format-dot"></span><span className="format-name">Panel Moderation</span></div><span className="format-tag">45–90 min</span><span className="line-draw"></span></div>
-              <div className="format-item reveal"><div className="format-left"><span className="format-dot"></span><span className="format-name">Fireside Chat</span></div><span className="format-tag">30–45 min</span><span className="line-draw"></span></div>
-              <div className="format-item reveal"><div className="format-left"><span className="format-dot"></span><span className="format-name">Workshop</span></div><span className="format-tag">Half/full day</span><span className="line-draw"></span></div>
-              <div className="format-item reveal"><div className="format-left"><span className="format-dot"></span><span className="format-name">MC &amp; Hosting</span></div><span className="format-tag">Custom</span><span className="line-draw"></span></div>
-            </div>
-          </div>
-          <div className="formats-image reveal"><RotatingImage /></div>
-        </div>
+        <FormatsAccordion />
       </div></section>
 
       <section className="section-white"><div className="container">
@@ -111,7 +98,7 @@ export default function SpeakingPage() {
           <span className="pullquote-mark">&ldquo;</span>
           <p className="pullquote-text">Nancy did a brilliant job for us! It was a dense topic but she kept everyone engaged and it felt very conversational. The feedback from the panels was excellent.</p>
           <div className="pullquote-attribution">
-            <span className="pullquote-role">Panel Organizer, EBRD Annual Meetings</span>
+            <span className="pullquote-role">— Panel Organizer, EBRD Annual Meetings</span>
           </div>
         </div>
       </div></section>

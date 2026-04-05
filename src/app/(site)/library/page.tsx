@@ -16,13 +16,13 @@ export default async function LibraryPage() {
           <h1 className="lib-hero-title">Ideas worth<br/><em>returning to.</em></h1>
           <p className="lib-hero-desc">Articles, talks, resources, and courses on communication, leadership, and narrative.</p>
           <div className="lib-hero-cta">
-            <Link href="/contact" className="btn btn-dark btn-lg">
-              Explore Resources{' '}
+            <Link href="#articles" className="btn btn-dark btn-lg">
+              Browse Articles{' '}
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </Link>
           </div>
         </div></div>
-        <div className="lib-hero-img"><img src="/DSC00256.jpg" alt="Nancy Kacungira at BBC" /></div>
+        <div className="lib-hero-img"><img src="/Nancy02.jpg" alt="Nancy Kacungira" /></div>
       </section>
 
       <section className="section-cream" id="articles"><div className="container">
@@ -37,6 +37,7 @@ export default async function LibraryPage() {
         <div className="videos-grid">
           <div className="video-card reveal">
             <div className="video-thumb">
+              <img src="/nancy-8.jpg" alt="TEDx: Reframing the African Narrative" className="video-thumb-img" />
               <div className="video-play">
                 <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="9,6 19,12 9,18"/></svg>
               </div>
@@ -45,6 +46,7 @@ export default async function LibraryPage() {
           </div>
           <div className="video-card reveal">
             <div className="video-thumb">
+              <img src="/nancy-5.jpg" alt="WEF: Fourth Industrial Revolution" className="video-thumb-img" />
               <div className="video-play">
                 <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="9,6 19,12 9,18"/></svg>
               </div>
@@ -84,7 +86,7 @@ export default async function LibraryPage() {
         </div>
       </div></section>
 
-      <section className="section-dark" id="programmes" style={{paddingTop:0}}><div className="container">
+      <section className="section-cream" id="programmes"><div className="container">
         <p className="section-eyebrow reveal">Courses and learning</p>
         <h2 className="section-heading reveal">Programmes designed to <em>transform</em></h2>
         <p className="section-desc reveal" style={{marginBottom:'2rem'}}>Each course blends Nancy&apos;s real-world experience with practical frameworks you can apply immediately.</p>
@@ -148,11 +150,14 @@ export default async function LibraryPage() {
         </div>
       </div></section>
 
-      <section className="section-dark book-section" style={{paddingTop:0}}>
+      <section className="section-dark book-section">
         <div className="book-glow"></div>
         <div className="container">
           <div className="book-layout">
-            <div className="book-cover reveal">Book cover</div>
+            <div className="book-cover reveal">
+              <div className="book-cover-line"></div>
+              <p className="book-cover-author">Nancy Kacungira</p>
+            </div>
             <div className="book-text">
               <span className="book-badge reveal">Coming Soon</span>
               <h2 className="section-heading reveal">Nancy&apos;s first <em>book</em></h2>

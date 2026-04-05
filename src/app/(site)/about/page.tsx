@@ -10,7 +10,7 @@ export default function AboutPage() {
           <h1 className="about-hero-title">The voice behind<br/><em>the story.</em></h1>
           <div className="about-hero-cta">
             <Link href="/contact" className="btn btn-dark btn-lg">
-              Let&apos;s Talk{' '}
+              Read the full story{' '}
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </Link>
           </div>

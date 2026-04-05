@@ -27,9 +27,17 @@ export default function PageScripts() {
     });
 
     // ══════════ NAV SCROLL ══════════
+    let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const nav = document.getElementById('mainNav');
-      if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+      if (!nav) return;
+      const current = window.scrollY;
+      nav.classList.toggle('scrolled', current > 40);
+      // Hide on scroll down, reveal on scroll up (ignore tiny jitter < 4px)
+      if (Math.abs(current - lastScrollY) > 4) {
+        nav.classList.toggle('nav--hidden', current > lastScrollY && current > 80);
+        lastScrollY = current;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
