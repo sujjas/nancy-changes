@@ -8,10 +8,10 @@ export default function BioMosaic() {
         {/* Bio text card */}
         <div className="bio-mosaic-card bio-mosaic-card--text">
           <h2 className="bio-editorial-title">My <em>story.</em></h2>
-          <p>Nancy Kacungira works with senior leaders and high-performing professionals to sharpen how they communicate in environments where the quality of a conversation determines the quality of an outcome.</p>
-          <p>A former lead presenter and correspondent for BBC News with nearly two decades of broadcast experience, she has built a career at the intersection of storytelling, influence, and strategic communication.</p>
-          <p>She won the inaugural BBC Komla Dumor Award in 2015 and now helps senior professionals and organisations communicate with the authority their work deserves.</p>
-          <Link href="/about" className="bio-cta">More about Nancy{' '}<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></Link>
+          <p>I work with senior leaders and high-performing professionals to sharpen how they communicate in environments where the quality of a conversation determines the quality of an outcome.</p>
+          <p>As a former lead presenter and correspondent for BBC News with nearly two decades of broadcast experience, I&apos;ve built a career at the intersection of storytelling, influence, and strategic communication.</p>
+          <p>I won the inaugural BBC Komla Dumor Award in 2015 and now help senior professionals and organisations communicate with the authority their work deserves.</p>
+          <Link href="/about" className="bio-cta">More about me{' '}<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></Link>
         </div>
 
         {/* Images */}

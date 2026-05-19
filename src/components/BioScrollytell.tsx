@@ -5,15 +5,16 @@ import Link from 'next/link';
 
 const PARAGRAPHS = [
   {
-    text: 'Nancy Kacungira works with senior leaders and high-performing professionals to sharpen how they communicate in environments where the quality of a conversation determines the quality of an outcome.',
+    text: 'I work with senior leaders and high-performing professionals to sharpen how they communicate in environments where the quality of a conversation determines the quality of an outcome.',
     image: '/nancy-1.jpg',
+    focal: 'left center',
   },
   {
-    text: 'A former lead presenter and correspondent for BBC News with nearly two decades of broadcast experience, she has built a career at the intersection of storytelling, influence, and strategic communication. She won the inaugural BBC Komla Dumor Award in 2015, recognising the next generation of African broadcast talent.',
+    text: 'As a former lead presenter and correspondent for BBC News with nearly two decades of broadcast experience, I’ve built a career at the intersection of storytelling, influence, and strategic communication. I won the inaugural BBC Komla Dumor Award in 2015, recognising the next generation of African broadcast talent.',
     image: '/nancy-7.jpg',
   },
   {
-    text: 'She brings the same discipline she applied in high-pressure newsrooms — where clarity, credibility, and precision were non-negotiable — directly into the training room: practical, scenario-based, and immediately transferable.',
+    text: 'I bring the same discipline I applied in high-pressure newsrooms — where clarity, credibility, and precision were non-negotiable — directly into the training room: practical, scenario-based, and immediately transferable.',
     image: '/nancy-9.jpg',
   },
 ];
@@ -126,7 +127,7 @@ export default function BioScrollytell() {
               );
             })}
             <Link href="/about" className="bio-cta" style={{ opacity: revealedChars >= TOTAL_CHARS ? 1 : 0, transition: 'opacity 0.5s' }}>
-              More about Nancy{' '}
+              More about me{' '}
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </Link>
           </div>
@@ -140,6 +141,7 @@ export default function BioScrollytell() {
                   src={p.image}
                   alt=""
                   className={`bio-st-img${activeImage === i ? ' bio-st-img--active' : ''}`}
+                  style={(p as { focal?: string }).focal ? { objectPosition: (p as { focal?: string }).focal } : undefined}
                 />
               ))}
             </div>

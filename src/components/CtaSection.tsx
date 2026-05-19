@@ -12,7 +12,7 @@ export default function CtaSection() {
       <div className="cta-bg"><img src="/nancy-5.jpg" alt="" /></div>
       <div className="cta-inner">
         <h2 className="cta-title">Ready to work <em>together?</em></h2>
-        <p className="cta-desc">Whether you need a keynote, advisor, or moderator — Nancy would love to hear from you.</p>
+        <p className="cta-desc">For a keynote, advisor, or moderator — I&apos;d love to hear from you.</p>
         <div className="cta-buttons">
           <Link href="/speaking" className="btn btn-light">
             Explore Speaking{' '}{ARROW}

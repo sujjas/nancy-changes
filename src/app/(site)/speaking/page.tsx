@@ -9,7 +9,7 @@ export default function SpeakingPage() {
         <div className="sp-hero-text"><div>
           <p className="sp-hero-eyebrow">Speaking &amp; Moderation</p>
           <h1 className="sp-hero-title">Shaping how leaders <em>communicate.</em></h1>
-          <p className="sp-hero-desc">From the World Economic Forum to the BBC newsroom, Nancy brings clarity to complex narratives — helping audiences rethink how they speak, influence, and lead.</p>
+          <p className="sp-hero-desc">From the World Economic Forum to the BBC newsroom, I bring clarity to complex narratives — helping audiences rethink how they speak, influence, and lead.</p>
           <div className="sp-hero-cta">
             <Link href="#topics" className="btn btn-dark btn-lg">
               Explore Topics{' '}
@@ -34,7 +34,7 @@ export default function SpeakingPage() {
       <section className="section-white" id="topics"><div className="container">
         <div style={{marginBottom:'3.5rem'}}>
           <p className="section-eyebrow reveal">Topics &amp; Themes</p>
-          <h2 className="section-heading reveal">What Nancy <em>speaks about</em></h2>
+          <h2 className="section-heading reveal">What I <em>speak about</em></h2>
           <p className="section-desc reveal">Every talk is rooted in real experience — from the newsroom to the boardroom.</p>
         </div>
         <div className="topics-grid reveal-stagger">
@@ -43,14 +43,14 @@ export default function SpeakingPage() {
           <div className="topic-card reveal"><span className="topic-number">03</span><h3 className="topic-title">African Narratives</h3><p className="topic-desc">Challenging outdated portrayals with nuanced, evidence-based storytelling.</p></div>
           <div className="topic-card reveal"><span className="topic-number">04</span><h3 className="topic-title">Leadership &amp; Presence</h3><p className="topic-desc">Building presence that commands rooms — through clarity, not volume.</p></div>
           <div className="topic-card reveal"><span className="topic-number">05</span><h3 className="topic-title">Media &amp; Discourse</h3><p className="topic-desc">How media shapes opinion and how to engage more effectively with journalists.</p></div>
-          <div className="topic-card reveal"><span className="topic-number">06</span><h3 className="topic-title">Women in Leadership</h3><p className="topic-desc">Navigating visibility and authority — drawn from Nancy&apos;s own journey.</p></div>
+          <div className="topic-card reveal"><span className="topic-number">06</span><h3 className="topic-title">Women in Leadership</h3><p className="topic-desc">Navigating visibility and authority — drawn from my own journey.</p></div>
         </div>
       </div></section>
 
       <section className="section-dark"><div className="container">
         <div style={{marginBottom:'3.5rem'}}>
           <p className="section-eyebrow reveal">Who This Is For</p>
-          <h2 className="section-heading reveal">Who <em>books Nancy</em></h2>
+          <h2 className="section-heading reveal">Who <em>books me</em></h2>
         </div>
         <div className="audiences-grid">
           <div className="audience-card reveal-left">

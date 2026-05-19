@@ -14,12 +14,14 @@ const FORMATS = [
     duration: '45–90 min',
     desc: 'Keeps complex multi-speaker discussions focused and energised for the audience.',
     image: '/nancy-5.jpg',
+    focal: 'left center',
   },
   {
     name: 'Fireside Chat',
     duration: '30–45 min',
     desc: 'Intimate, unscripted conversation that draws out depth from a featured guest.',
     image: '/nancy-3.jpg',
+    focal: 'right center',
   },
   {
     name: 'Workshop',
@@ -114,6 +116,7 @@ export default function FormatsAccordion() {
             src={f.image}
             alt={f.name}
             className={`sva-image${active === i ? ' sva-image--active' : ''}`}
+            style={(f as { focal?: string }).focal ? { objectPosition: (f as { focal?: string }).focal } : undefined}
           />
         ))}
       </div>

@@ -57,7 +57,7 @@ export default function ContactPage() {
       </section>
 
       <section className="social-strip"><div className="social-inner">
-        <p className="social-text reveal">Follow Nancy <em>across platforms</em></p>
+        <p className="social-text reveal">Follow me <em>across platforms</em></p>
         <div className="social-links" id="socialLinks">
           <a href="https://www.instagram.com/nancykacungira" target="_blank" rel="noopener noreferrer" className="social-pill">Instagram</a>
           <a href="https://www.facebook.com/nancykacungira" target="_blank" rel="noopener noreferrer" className="social-pill">Facebook</a>

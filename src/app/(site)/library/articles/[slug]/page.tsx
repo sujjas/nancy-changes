@@ -57,7 +57,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
       {others.length > 0 && (
         <section className="section-cream"><div className="container">
-          <p className="section-eyebrow">More from Nancy</p>
+          <p className="section-eyebrow">More from me</p>
           <h2 className="section-heading reveal" style={{marginBottom:'2rem'}}>Continue <em>reading</em></h2>
           <div className="articles-grid" style={{gridTemplateColumns:'repeat(2,1fr)'}}>
             {others.map((a: any) => (

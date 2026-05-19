@@ -26,20 +26,68 @@ export default function PageScripts() {
       );
     });
 
-    // ══════════ NAV SCROLL ══════════
+    // ══════════ NAV SCROLL + ADAPTIVE COLOR ══════════
     let lastScrollY = window.scrollY;
+
+    const parseRgb = (str: string): [number, number, number, number] | null => {
+      const m = str.match(/rgba?\(([^)]+)\)/);
+      if (!m) return null;
+      const parts = m[1].split(',').map((s) => parseFloat(s.trim()));
+      return [parts[0] || 0, parts[1] || 0, parts[2] || 0, parts[3] === undefined ? 1 : parts[3]];
+    };
+
+    const luminance = (r: number, g: number, b: number) => {
+      const toLin = (c: number) => {
+        const s = c / 255;
+        return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+      };
+      return 0.2126 * toLin(r) + 0.7152 * toLin(g) + 0.0722 * toLin(b);
+    };
+
+    const isElementDark = (el: Element | null): boolean | null => {
+      let node: Element | null = el;
+      while (node && node !== document.body) {
+        const cs = getComputedStyle(node);
+        const rgb = parseRgb(cs.backgroundColor);
+        if (rgb && rgb[3] > 0.05) {
+          return luminance(rgb[0], rgb[1], rgb[2]) < 0.5;
+        }
+        node = node.parentElement;
+      }
+      return null;
+    };
+
+    const updateNavTheme = () => {
+      const nav = document.getElementById('mainNav');
+      if (!nav) return;
+      const navRect = nav.getBoundingClientRect();
+      const probeY = navRect.bottom + 8;
+      const probeX = window.innerWidth / 2;
+      // Temporarily disable nav pointer events so elementFromPoint hits content below
+      const prevPe = nav.style.pointerEvents;
+      nav.style.pointerEvents = 'none';
+      const el = document.elementFromPoint(probeX, probeY);
+      nav.style.pointerEvents = prevPe;
+      const dark = isElementDark(el);
+      if (dark === true) nav.classList.add('over-dark');
+      else if (dark === false) nav.classList.remove('over-dark');
+    };
+
     const handleScroll = () => {
       const nav = document.getElementById('mainNav');
       if (!nav) return;
       const current = window.scrollY;
       nav.classList.toggle('scrolled', current > 40);
-      // Hide on scroll down, reveal on scroll up (ignore tiny jitter < 4px)
       if (Math.abs(current - lastScrollY) > 4) {
         nav.classList.toggle('nav--hidden', current > lastScrollY && current > 80);
         lastScrollY = current;
       }
+      updateNavTheme();
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateNavTheme);
+    // Initial check (deferred so layout settles)
+    requestAnimationFrame(updateNavTheme);
 
     // ══════════ COUNTER ══════════
     const counterObs = new IntersectionObserver(
@@ -245,6 +293,7 @@ export default function PageScripts() {
       revealObs.disconnect();
       counterObs.disconnect();
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateNavTheme);
       carouselCleanups.forEach((cleanup) => cleanup());
       if (timelineHandler) window.removeEventListener('scroll', timelineHandler);
       quoteObs?.disconnect();

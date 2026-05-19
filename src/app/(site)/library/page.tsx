@@ -33,7 +33,7 @@ export default async function LibraryPage() {
 
       <section className="section-white"><div className="container">
         <p className="section-eyebrow reveal">Talks</p>
-        <h2 className="section-heading reveal">Watch Nancy in <em>action</em></h2>
+        <h2 className="section-heading reveal">Watch me in <em>action</em></h2>
         <div className="videos-grid">
           <div className="video-card reveal">
             <div className="video-thumb">
@@ -89,7 +89,7 @@ export default async function LibraryPage() {
       <section className="section-cream" id="programmes"><div className="container">
         <p className="section-eyebrow reveal">Courses and learning</p>
         <h2 className="section-heading reveal">Programmes designed to <em>transform</em></h2>
-        <p className="section-desc reveal" style={{marginBottom:'2rem'}}>Each course blends Nancy&apos;s real-world experience with practical frameworks you can apply immediately.</p>
+        <p className="section-desc reveal" style={{marginBottom:'2rem'}}>Each course blends my real-world experience with practical frameworks ready to apply immediately.</p>
         <div className="courses-grid">
           <Link href="/library/programmes/narrative-mastery-for-leaders" className="course-card reveal-left" style={{textDecoration:'none'}}>
             <div className="course-thumb">
@@ -112,7 +112,7 @@ export default async function LibraryPage() {
                 </span>
               </div>
               <h3 className="course-title">Narrative Mastery for Leaders</h3>
-              <p className="course-desc">A deep-dive programme for executives and senior communicators. Learn to craft narratives that shift perception, build trust, and drive action — using the same frameworks Nancy applies in newsrooms and boardrooms.</p>
+              <p className="course-desc">A deep-dive programme for executives and senior communicators. Learn to craft narratives that shift perception, build trust, and drive action — using the same frameworks I apply in newsrooms and boardrooms.</p>
               <div className="course-footer">
                 <div className="course-price">$1,200 <span className="course-price-note">/ per person</span></div>
                 <span className="btn btn-accent">Learn More <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
@@ -160,7 +160,7 @@ export default async function LibraryPage() {
             </div>
             <div className="book-text">
               <span className="book-badge reveal">Coming Soon</span>
-              <h2 className="section-heading reveal">Nancy&apos;s first <em>book</em></h2>
+              <h2 className="section-heading reveal">My first <em>book</em></h2>
               <p className="reveal" style={{fontSize:'18px',lineHeight:'1.65',color:'var(--text-light-muted)',marginBottom:'1.5rem'}}>A deep exploration of narrative intelligence — how stories shape perception, power, and progress.</p>
               <div className="reveal">
                 <a href="#" className="btn btn-accent">Join Waitlist <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>

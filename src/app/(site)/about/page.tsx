@@ -6,7 +6,7 @@ export default function AboutPage() {
     <>
       <section className="about-hero">
         <div className="about-hero-text"><div>
-          <p className="about-hero-eyebrow">About Nancy</p>
+          <p className="about-hero-eyebrow">About me</p>
           <h1 className="about-hero-title">The voice behind<br/><em>the story.</em></h1>
           <div className="about-hero-cta">
             <Link href="/contact" className="btn btn-dark btn-lg">
@@ -30,9 +30,9 @@ export default function AboutPage() {
         <div className="bio-text">
           <p className="section-eyebrow reveal">The Full Story</p>
           <h2 className="section-heading reveal">From Kampala&apos;s airwaves to the <em>world stage</em></h2>
-          <p className="bio-paragraph reveal">Nancy Kacungira is an award-winning Ugandan journalist and strategic communication expert whose career has taken her to the anchor desk at BBC News, where she has presented breaking news coverage and brought incisive analysis to some of the world&apos;s most significant stories.</p>
-          <p className="bio-paragraph reveal">A recipient of the inaugural BBC World News Komla Dumor Award and a Masters graduate of the University of Leeds in Communication Studies, Nancy has interviewed presidents, heads of state and global leaders across politics, business and international affairs. Her documentaries and TEDx talk on African narratives have twice earned her recognition among Africa&apos;s 100 Most Influential Young People.</p>
-          <p className="bio-paragraph reveal">As a sought-after moderator and keynote speaker, Nancy has presided over high-profile events including sessions at the World Economic Forum, IMF and World Bank. She now works with leaders, organisations and institutions across Africa and globally, helping them close the gap between the good work they do, and the effectiveness with which it&apos;s communicated.</p>
+          <p className="bio-paragraph reveal">I&apos;m an award-winning Ugandan journalist and strategic communication expert. My career has taken me to the anchor desk at BBC News, where I&apos;ve presented breaking news coverage and brought incisive analysis to some of the world&apos;s most significant stories.</p>
+          <p className="bio-paragraph reveal">As the recipient of the inaugural BBC World News Komla Dumor Award and a Masters graduate of the University of Leeds in Communication Studies, I&apos;ve interviewed presidents, heads of state and global leaders across politics, business and international affairs. My documentaries and TEDx talk on African narratives have twice earned me recognition among Africa&apos;s 100 Most Influential Young People.</p>
+          <p className="bio-paragraph reveal">As a sought-after moderator and keynote speaker, I&apos;ve presided over high-profile events including sessions at the World Economic Forum, IMF and World Bank. I now work with leaders, organisations and institutions across Africa and globally, helping them close the gap between the good work they do, and the effectiveness with which it&apos;s communicated.</p>
         </div>
       </div></section>
 

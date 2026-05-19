@@ -11,6 +11,7 @@ const SERVICES = [
     cta: { label: 'Explore the system', href: '/library' },
     image: '/nancy-1.jpg',
     label: 'Flagship',
+    focal: 'left center',
   },
   {
     title: 'Selective Advisory',
@@ -18,6 +19,7 @@ const SERVICES = [
     body: 'A strategic intervention for individuals preparing for a defining moment — pitch, board, media, keynote. I\'ll refine your narrative, structure, and delivery to ensure maximum authority. By request only.',
     cta: { label: 'Request details', href: '/contact' },
     image: '/nancy-2.jpg',
+    focal: 'left center',
   },
   {
     title: 'Keynotes & Workshops',
@@ -25,6 +27,7 @@ const SERVICES = [
     body: 'Interactive sessions on Narrative Intelligence, Executive Presence, and Communication Archetypes. Designed for leadership off-sites, ERGs, and industry conferences.',
     cta: { label: 'Enquire', href: '/contact' },
     image: '/nancy-3.jpg',
+    focal: 'right center',
   },
   {
     title: 'The Clarity System',
@@ -32,6 +35,7 @@ const SERVICES = [
     body: 'A curated collection of frameworks, essays, and tools for professionals who want to think more clearly about how they communicate.',
     cta: { label: 'Explore the System', href: '/library' },
     image: '/nancy-4.jpg',
+    focal: 'center center',
   },
 ];
 
@@ -95,6 +99,7 @@ export default function ServicesAccordion() {
               src={s.image}
               alt={s.title}
               className={`sva-image${active === i ? ' sva-image--active' : ''}`}
+              style={s.focal ? { objectPosition: s.focal } : undefined}
             />
           ))}
         </div>
