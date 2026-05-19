@@ -86,7 +86,18 @@ export default function PageScripts() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', updateNavTheme);
-    // Initial check (deferred so layout settles)
+    window.addEventListener('load', updateNavTheme);
+    window.addEventListener('pageshow', updateNavTheme);
+    // Observe layout shifts (images loading, route content settling) and re-probe
+    const layoutObs = new ResizeObserver(updateNavTheme);
+    layoutObs.observe(document.body);
+    // Catch images that finish loading after initial render
+    const imgLoadHandler = () => updateNavTheme();
+    document.querySelectorAll('img').forEach((img) => {
+      if (!(img as HTMLImageElement).complete) img.addEventListener('load', imgLoadHandler, { once: true });
+    });
+    // A few delayed checks for slow-loading content / animations that shift layout
+    const initialTimeouts = [50, 200, 600, 1500].map((ms) => setTimeout(updateNavTheme, ms));
     requestAnimationFrame(updateNavTheme);
 
     // ══════════ COUNTER ══════════
@@ -294,6 +305,10 @@ export default function PageScripts() {
       counterObs.disconnect();
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', updateNavTheme);
+      window.removeEventListener('load', updateNavTheme);
+      window.removeEventListener('pageshow', updateNavTheme);
+      layoutObs.disconnect();
+      initialTimeouts.forEach(clearTimeout);
       carouselCleanups.forEach((cleanup) => cleanup());
       if (timelineHandler) window.removeEventListener('scroll', timelineHandler);
       quoteObs?.disconnect();
