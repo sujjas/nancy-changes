@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
 import { Agentation } from 'agentation';
-import GrainOverlay from '@/components/GrainOverlay';
+import PaperTextureOverlay from '@/components/PaperTextureOverlay';
 
 export const metadata: Metadata = {
   title: 'Nancy Kacungira — Strategic Communication',
@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         {children}
-        <GrainOverlay />
+        <PaperTextureOverlay />
         {process.env.NODE_ENV === 'development' && <Agentation />}
         <Script src="https://ui.sh/ui-picker.js" />
       </body>

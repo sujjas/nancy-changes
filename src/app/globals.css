@@ -16,26 +16,7 @@ html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{font-family:var(--sans);color:var(--text-primary);background:var(--bg-white);overflow-x:clip}
 img{display:block;max-width:100%}
 
-/* ══════════ GRAIN (on section backgrounds only, not images) ══════════ */
-:root{--grain-opacity:0.1;--grain-blend:screen;--grain-size:400px 400px;--grain-image:url("/grain.svg")}
-section,footer,header,main,article,aside,.page-section{position:relative;isolation:isolate}
-section::after,footer::after,header::after,main::after,article::after,aside::after,.page-section::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:var(--grain-image);
-  background-size:var(--grain-size);
-  background-repeat:repeat;
-  mix-blend-mode:var(--grain-blend);
-  opacity:var(--grain-opacity);
-  z-index:-1;
-}
-/* Per-section tuning: dark sections take grain via screen (lifts threads),
-   light sections via soft-light (no color shift, just subtle texture). */
-.section-dark::after,.section-dark.book-section::after,.home-hero::after{
-  mix-blend-mode:screen;opacity:calc(var(--grain-opacity) * 0.6);
-}
-.section-white::after,.section-cream::after,.lib-hero::after,.sp-hero::after,.article-hero::after,.contact-hero::after,.contact-page::after{
-  mix-blend-mode:soft-light;opacity:calc(var(--grain-opacity) * 1);
-}
+/* Paper Shaders "paper-texture" overlay is rendered site-wide via PaperTextureOverlay. */
 
 /* ══════════ NAV ══════════ */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding-block:1.5rem;padding-inline:var(--rail);display:flex;justify-content:space-between;align-items:center;background:transparent;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),color var(--ease)}
@@ -639,4 +620,112 @@ footer{background:var(--bg-dark);padding:3.5rem var(--rail) 2.5rem;border-top:1p
   .stats-inner,.impact-grid{grid-template-columns:1fr}
   .footer-nav{flex-wrap:wrap;gap:1.5rem}
   .course-footer{flex-direction:column;align-items:flex-start}
+}
+
+/* ══════════ MOBILE OPTIMISATION ══════════ */
+@media(max-width:768px){
+  /* Sections: tighter vertical rhythm */
+  .section-white,.section-cream,.section-dark{padding:4rem var(--rail)}
+  .section-eyebrow{font-size:0.75rem;margin-bottom:0.75rem}
+  .section-heading{font-size:clamp(1.75rem,7vw,2.25rem);margin-bottom:0.75rem}
+  .section-desc{font-size:1rem}
+
+  /* Body type: enforce 16px minimum */
+  body{font-size:16px}
+  .home-hero-sub,.sp-hero-desc,.about-positioning p,.lib-hero-desc,.contact-hero-desc{font-size:1.0625rem;line-height:1.55}
+
+  /* Hero titles fit narrow viewports */
+  .home-hero-title,.home-hero--v4 .v4-title{font-size:clamp(2.25rem,9vw,3rem);letter-spacing:-1px;line-height:1.06}
+  .home-hero-sub,.home-hero--v4 .v4-sub{font-size:1.0625rem}
+  .home-hero--v4 .v4-eyebrow{font-size:0.7rem}
+  .home-hero--v4 .v4-cutout-wrap{padding-left:0;justify-content:center}
+  .home-hero--v4 .v4-cutout{max-height:480px}
+
+  /* Buttons: full-width-ish touch targets */
+  .btn,.btn-lg{font-size:1rem;padding:0.85rem 1.25rem;min-height:44px}
+  .home-hero-cta,.v4-cta{gap:0.6rem}
+  .home-hero-cta .btn,.v4-cta .btn{flex:1 1 auto;justify-content:center}
+
+  /* Logo bar: tighter, smaller logos */
+  .logo-bar{padding:2rem var(--rail)}
+  .logo-row{gap:1.5rem;flex-wrap:wrap;justify-content:center}
+  .logo-img{width:90px;height:30px}
+
+  /* Services accordion: ensure full width and readable text */
+  .sva-outer h2{font-size:clamp(2rem,8vw,2.5rem);letter-spacing:-0.5px;margin-bottom:1.5rem}
+  .sva-item-title{font-size:1.25rem}
+  .sva-item-desc{font-size:0.9375rem}
+  .sva-image-panel{height:240px}
+
+  /* Speaking topics */
+  .topic-card{padding:1.5rem 0}
+  .topic-title{font-size:1.15rem}
+  .topic-desc{font-size:0.95rem}
+  .topic-number{font-size:0.85rem}
+
+  /* Audience cards */
+  .audience-name{font-size:1.05rem}
+  .audience-desc{font-size:0.95rem}
+
+  /* Articles & videos */
+  .article-title{font-size:1.05rem}
+  .video-title{font-size:1rem}
+
+  /* Course cards */
+  .course-title{font-size:1.25rem}
+  .course-desc{font-size:0.95rem}
+  .course-price{font-size:1.5rem}
+  .course-thumb{aspect-ratio:1/1}
+
+  /* Book section */
+  .book-section{padding:5rem var(--rail)}
+  .book-cover{width:200px}
+
+  /* Forms: 16px to prevent iOS zoom on focus */
+  .form-input,.form-select,.form-textarea{font-size:16px;padding:0.85rem 1rem}
+  .form-label{font-size:0.875rem}
+  .form-title{font-size:1.5rem}
+  .contact-page{padding:3rem var(--rail);gap:2.5rem}
+  .contact-info{order:2}
+
+  /* Footer + social */
+  footer{padding:2.5rem var(--rail) 2rem}
+  .footer-logo{font-size:1.1rem}
+  .social-text{font-size:1.25rem}
+
+  /* CtaSection */
+  .cta-title{font-size:clamp(1.75rem,8vw,2.5rem)}
+  .cta-desc{font-size:1rem}
+  .cta-buttons{flex-direction:column;width:100%}
+  .cta-buttons .btn{width:100%;justify-content:center}
+
+  /* Impact grid: 2-up still works, but tighten */
+  .impact-card{padding:1rem 0}
+  .impact-number{font-size:clamp(2rem,10vw,3rem)}
+  .impact-label{font-size:0.85rem}
+
+  /* Pullquote */
+  .home-pullquote .pullquote-text{font-size:1.15rem;line-height:1.5}
+  .pullquote-mark{font-size:3rem}
+
+  /* About bio */
+  .bio-paragraph{font-size:1rem;line-height:1.65}
+  .about-hero-title{font-size:clamp(2.25rem,9vw,3rem)}
+  .quote-text{font-size:1.15rem}
+
+  /* Library hero */
+  .lib-hero-title{font-size:clamp(2.25rem,9vw,3rem)}
+  .resource-title{font-size:1rem}
+  .resource-desc{font-size:0.9rem}
+
+  /* Nav padding tighter on mobile */
+  nav{padding-block:1rem}
+  .nav-logo-img{height:48px}
+}
+
+@media(max-width:480px){
+  .section-white,.section-cream,.section-dark{padding:3.5rem var(--rail)}
+  .home-hero-cta,.v4-cta{flex-direction:column;align-items:stretch}
+  .home-hero-cta .btn,.v4-cta .btn{width:100%}
+  .nav-logo-img{height:42px}
 }

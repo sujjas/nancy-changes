@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.76",
     "@portabletext/react": "^6.0.3",
     "@sanity/image-url": "^2.1.0",
     "@sanity/vision": "^3.99.0",
