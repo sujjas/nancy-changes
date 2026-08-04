@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   const body = await req.json();
-  const { firstName, lastName, email, organisation, enquiryType, eventDate, budget, message } = body;
+  const { firstName, lastName, email, organisation, enquiryType, message } = body;
 
   try {
     await resend.emails.send({
@@ -19,8 +19,6 @@ export async function POST(req: NextRequest) {
           <tr><td><strong>Email</strong></td><td>${email}</td></tr>
           <tr><td><strong>Organisation</strong></td><td>${organisation || '—'}</td></tr>
           <tr><td><strong>Enquiry type</strong></td><td>${enquiryType || '—'}</td></tr>
-          <tr><td><strong>Event date</strong></td><td>${eventDate || '—'}</td></tr>
-          <tr><td><strong>Budget</strong></td><td>${budget || '—'}</td></tr>
           <tr><td><strong>Message</strong></td><td>${message || '—'}</td></tr>
         </table>
       `,

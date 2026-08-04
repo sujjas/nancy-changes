@@ -2,17 +2,28 @@ import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
 import FormatsAccordion from '@/components/FormatsAccordion';
 
+const VIDEOS = [
+  { id: 'gEmqIqGgY_4', title: 'Anchoring — BBC World News' },
+  { id: '0rFiStjv7k0', title: 'Anchoring — BBC World News' },
+  { id: 'wPO2Sa5VoL8', title: 'EBRD Annual Meeting 2026' },
+  { id: '-SLKbUfJ7dk', title: 'Africa’s Digital Transformation Panel (2025)' },
+  { id: 'csfcZos41BA', title: 'Water Security Investment Panel (2025)' },
+  { id: 'uxEhGxgmvDE', title: 'Standard Bank African Markets Conference 2025' },
+  { id: 'ZNX7kqUBhQg', title: 'Reykjavik Global Forum — with Melinda Gates & Sanda Ojiambo' },
+  { id: 'CZ4X3ygv3X0', title: 'BBC News Civil Rights Special' },
+];
+
 export default function SpeakingPage() {
   return (
     <>
       <section className="sp-hero">
         <div className="sp-hero-text"><div>
-          <p className="sp-hero-eyebrow">Speaking &amp; Moderation</p>
-          <h1 className="sp-hero-title">Shaping how leaders <em>communicate.</em></h1>
-          <p className="sp-hero-desc">From the World Economic Forum to the BBC newsroom, I bring clarity to complex narratives — helping audiences rethink how they speak, influence, and lead.</p>
+          <p className="sp-hero-eyebrow">Former BBC World News Lead Presenter</p>
+          <h1 className="sp-hero-title">Nancy brings the same discipline she applied in international newsrooms — <em>to your stage.</em></h1>
+          <p className="sp-hero-desc">Keynotes, panel moderation, fireside conversations and full-event hosting. For conferences, leadership summits, and corporate events.</p>
           <div className="sp-hero-cta">
-            <Link href="#topics" className="btn btn-dark btn-lg">
-              Explore Topics{' '}
+            <Link href="/contact" className="btn btn-dark btn-lg">
+              Enquire about booking Nancy{' '}
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </Link>
           </div>
@@ -31,19 +42,40 @@ export default function SpeakingPage() {
         </div>
       </div>
 
-      <section className="section-white" id="topics"><div className="container">
+      <section className="section-white"><div className="container">
+        <div style={{marginBottom:'3.5rem'}}>
+          <p className="section-eyebrow reveal">Watch</p>
+          <h2 className="section-heading reveal">Nancy <em>in action</em></h2>
+        </div>
+        <div className="video-grid">
+          {VIDEOS.map((v) => (
+            <div key={v.id} className="video-card reveal">
+              <div className="video-embed">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${v.id}`}
+                  title={v.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <p className="video-title">{v.title}</p>
+            </div>
+          ))}
+        </div>
+      </div></section>
+
+      <section className="section-cream" id="topics"><div className="container">
         <div style={{marginBottom:'3.5rem'}}>
           <p className="section-eyebrow reveal">Topics &amp; Themes</p>
           <h2 className="section-heading reveal">What I <em>speak about</em></h2>
-          <p className="section-desc reveal">Every talk is rooted in real experience — from the newsroom to the boardroom.</p>
         </div>
         <div className="topics-grid reveal-stagger">
-          <div className="topic-card reveal"><span className="topic-number">01</span><h3 className="topic-title">Strategic Communication</h3><p className="topic-desc">How to craft messages that cut through noise, build trust, and move people to action.</p></div>
-          <div className="topic-card reveal"><span className="topic-number">02</span><h3 className="topic-title">Narrative Intelligence</h3><p className="topic-desc">Understanding the stories that shape perception — in media, business, and politics.</p></div>
-          <div className="topic-card reveal"><span className="topic-number">03</span><h3 className="topic-title">African Narratives</h3><p className="topic-desc">Challenging outdated portrayals with nuanced, evidence-based storytelling.</p></div>
-          <div className="topic-card reveal"><span className="topic-number">04</span><h3 className="topic-title">Leadership &amp; Presence</h3><p className="topic-desc">Building presence that commands rooms — through clarity, not volume.</p></div>
-          <div className="topic-card reveal"><span className="topic-number">05</span><h3 className="topic-title">Media &amp; Discourse</h3><p className="topic-desc">How media shapes opinion and how to engage more effectively with journalists.</p></div>
-          <div className="topic-card reveal"><span className="topic-number">06</span><h3 className="topic-title">Women in Leadership</h3><p className="topic-desc">Navigating visibility and authority — drawn from my own journey.</p></div>
+          <div className="topic-card reveal"><span className="topic-number">01</span><h3 className="topic-title">Strategic Communication</h3><p className="topic-desc">How smart people lose rooms; and the specific adjustments that change that. Built on two decades of broadcast experience and direct coaching work with senior leaders.</p></div>
+          <div className="topic-card reveal"><span className="topic-number">02</span><h3 className="topic-title">Narrative Intelligence</h3><p className="topic-desc">The stories organisations tell about themselves are often the biggest obstacle to how they&apos;re perceived. This session teaches leaders to identify, interrogate and reframe those narratives.</p></div>
+          <div className="topic-card reveal"><span className="topic-number">03</span><h3 className="topic-title">Leadership Presence</h3><p className="topic-desc">Leadership presence is the ability to communicate with clarity, authority, and composure in high-stakes rooms. This session gives leaders a practical framework for showing up with precision and credibility — without over-performing or over-explaining.</p></div>
+          <div className="topic-card reveal"><span className="topic-number">04</span><h3 className="topic-title">African Narratives</h3><p className="topic-desc"><em>(for relevant conferences)</em> A forensic look at how global media constructs stories about Africa; and what more accurate, more useful storytelling looks like.</p></div>
         </div>
       </div></section>
 
@@ -91,6 +123,11 @@ export default function SpeakingPage() {
 
       <section className="section-cream"><div className="container">
         <FormatsAccordion />
+
+        <div className="moderation-credentials reveal">
+          <p className="moderation-credentials-heading">Also trusted to moderate:</p>
+          <p className="moderation-credentials-list">World Economic Forum · IMF Spring Meetings · UN General Assembly (incl. the G7 Partnership panel alongside Queen Máxima of the Netherlands and Melinda French Gates) · EBRD Annual Meeting · Standard Bank African Markets Conference (with Sir Tony Blair and African finance ministers) · Mo Ibrahim Governance Weekend · Gates Foundation Goalkeepers · Financial Times Africa Summit · Africa CEO Forum</p>
+        </div>
       </div></section>
 
       <section className="section-white"><div className="container">
@@ -103,7 +140,11 @@ export default function SpeakingPage() {
         </div>
       </div></section>
 
-      <CtaSection />
+      <CtaSection
+        title={<>Enquire about <em>availability.</em></>}
+        desc="Speaking and moderation engagements are booked a minimum of 4 weeks in advance. For major conferences and summits, earlier is better."
+        buttonLabel="Enquire now"
+      />
     </>
   );
 }

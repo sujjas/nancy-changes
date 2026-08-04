@@ -3,21 +3,16 @@ import ContactForm from '@/components/ContactForm';
 export default function ContactPage() {
   return (
     <>
-      <section className="contact-hero">
+      <section className="contact-hero contact-hero--text">
         <div className="contact-hero-text"><div>
-          <p className="contact-hero-eyebrow">Get in Touch</p>
-          <h1 className="contact-hero-title">Let&apos;s start a <em>conversation.</em></h1>
-          <p className="contact-hero-desc">Whether you&apos;re planning an event, exploring advisory, or simply have a question — I&apos;d love to hear from you.</p>
+          <p className="contact-hero-eyebrow">Former BBC World News Lead Presenter</p>
+          <h1 className="contact-hero-title">Let&apos;s talk about <em>what you need.</em></h1>
+          <p className="contact-hero-desc">Whether you&apos;re enquiring about 1:1 advisory, a workshop for your team, or booking Nancy to speak; use the form below. I respond within 48 hours. After that, we&apos;ll schedule a short call to discuss fit and next steps.</p>
         </div></div>
-        <div className="contact-hero-img"><img src="/nancy-4.jpg" alt="Nancy Kacungira" /></div>
       </section>
 
       <section className="contact-page">
         <div className="contact-info">
-          <div className="contact-trust">
-            <p className="contact-trust-quote">&ldquo;Good communication is not about saying more — it&rsquo;s about saying the right thing to the right person at the right time.&rdquo;</p>
-            <p className="contact-trust-attr">— Nancy Kacungira</p>
-          </div>
           <div className="contact-details">
             <div className="contact-detail">
               <div className="contact-detail-icon">
@@ -59,9 +54,8 @@ export default function ContactPage() {
       <section className="social-strip"><div className="social-inner">
         <p className="social-text reveal">Follow me <em>across platforms</em></p>
         <div className="social-links" id="socialLinks">
-          <a href="https://www.instagram.com/nancykacungira" target="_blank" rel="noopener noreferrer" className="social-pill">Instagram</a>
-          <a href="https://www.facebook.com/nancykacungira" target="_blank" rel="noopener noreferrer" className="social-pill">Facebook</a>
-          <a href="https://x.com/nancykacungira" target="_blank" rel="noopener noreferrer" className="social-pill">X</a>
+          <a href="https://www.instagram.com/kacungira/" target="_blank" rel="noopener noreferrer" className="social-pill">Instagram</a>
+          <a href="https://x.com/kacungira" target="_blank" rel="noopener noreferrer" className="social-pill">X</a>
           <a href="https://www.linkedin.com/in/nancykacungira" target="_blank" rel="noopener noreferrer" className="social-pill">LinkedIn</a>
         </div>
       </div></section>

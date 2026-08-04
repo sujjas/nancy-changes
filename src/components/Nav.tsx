@@ -19,7 +19,6 @@ export default function Nav() {
           <li><Link href="/" className={pathname === '/' ? 'active' : ''}>Home</Link></li>
           <li><Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link></li>
           <li><Link href="/speaking" className={pathname === '/speaking' ? 'active' : ''}>Speaking</Link></li>
-          <li><Link href="/library" className={pathname === '/library' ? 'active' : ''}>Resources</Link></li>
           <li><Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link></li>
         </ul>
         <button
@@ -35,7 +34,6 @@ export default function Nav() {
         <Link href="/" onClick={closeMenu}>Home</Link>
         <Link href="/about" onClick={closeMenu}>About</Link>
         <Link href="/speaking" onClick={closeMenu}>Speaking</Link>
-        <Link href="/library" onClick={closeMenu}>Resources</Link>
         <Link href="/contact" onClick={closeMenu}>Contact</Link>
       </div>
     </>

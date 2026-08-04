@@ -35,9 +35,7 @@ src/
       page.tsx           # /
       about/             # /about
       speaking/          # /speaking
-      library/           # /library
       contact/           # /contact
-      home-v2/           # alt home variant
     api/
       contact/route.ts   # POST → Resend email to info@nancykacungira.com
     studio/[[...tool]]/  # Sanity Studio mounted at /studio
@@ -52,8 +50,10 @@ sanity.config.ts         # Studio config consumed by /studio route
 ```
 
 **Sanity content model** (see [src/sanity/schemaTypes](src/sanity/schemaTypes)):
-- `article` — library/editorial content
+- `article` — editorial content
 - `programme` — speaking/programme entries
+
+> **Note:** the `/library` (Resources) route and the `home-v2` variant were removed in the Jul 2026 "Website Changes — FINAL" pass. The site is now four pages only — Home, About, Speaking, Contact — with two offers (Advisory; Speaking, Workshops & Training) and every CTA pointing at `/contact`. Courses, the book waitlist and downloadable toolkits are sold via social, not the website; do not reintroduce them. The `article`/`programme` schemas and the GROQ helpers in `lib/queries.ts` are consequently **unused by any page** — retained only so existing Studio content isn't orphaned.
 
 **Contact form flow:** [ContactForm.tsx](src/components/ContactForm.tsx) POSTs to [/api/contact](src/app/api/contact/route.ts), which calls Resend with `from: onboarding@resend.dev` and `to: info@nancykacungira.com`. Requires `RESEND_API_KEY`.
 

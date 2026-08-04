@@ -1,149 +1,41 @@
-'use client';
-
-import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 
-const SERVICES = [
-  {
-    title: 'Communication Intelligence',
-    subtitle: 'Sound senior when you\'re being assessed',
-    body: 'A self-directed system that teaches how senior decision-makers assess clarity, credibility, and readiness — and how to meet that bar calmly under pressure.',
-    cta: { label: 'Explore the system', href: '/library' },
-    image: '/nancy-1.jpg',
-    label: 'Flagship',
-    focal: 'left center',
-  },
-  {
-    title: 'Selective Advisory',
-    subtitle: 'For specific high-stakes moments',
-    body: 'A strategic intervention for individuals preparing for a defining moment — pitch, board, media, keynote. I\'ll refine your narrative, structure, and delivery to ensure maximum authority. By request only.',
-    cta: { label: 'Request details', href: '/contact' },
-    image: '/nancy-2.jpg',
-    focal: 'left center',
-  },
-  {
-    title: 'Keynotes & Workshops',
-    subtitle: 'For organisations and leadership teams',
-    body: 'Interactive sessions on Narrative Intelligence, Executive Presence, and Communication Archetypes. Designed for leadership off-sites, ERGs, and industry conferences.',
-    cta: { label: 'Enquire', href: '/contact' },
-    image: '/nancy-3.jpg',
-    focal: 'right center',
-  },
-  {
-    title: 'The Clarity System',
-    subtitle: 'Get to know the method',
-    body: 'A curated collection of frameworks, essays, and tools for professionals who want to think more clearly about how they communicate.',
-    cta: { label: 'Explore the System', href: '/library' },
-    image: '/nancy-4.jpg',
-    focal: 'center center',
-  },
-];
-
-const DURATION = 5000;
+const ARROW = (
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+);
 
 export default function ServicesAccordion() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [key, setKey] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const accordionRef = useRef<HTMLDivElement>(null);
-  const imagePanelRef = useRef<HTMLDivElement>(null);
-
-  const advance = useCallback(() => {
-    setActive(prev => (prev + 1) % SERVICES.length);
-    setKey(k => k + 1);
-  }, []);
-
-  useEffect(() => {
-    if (paused) return;
-    timerRef.current = setTimeout(advance, DURATION);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [active, paused, advance]);
-
-  useEffect(() => {
-    const el = accordionRef.current;
-    if (!el) return;
-    const item = el.children[active] as HTMLElement;
-    if (!item) return;
-    el.scrollTo({ left: item.offsetLeft, behavior: 'smooth' });
-  }, [active]);
-
-  useEffect(() => {
-    const accordion = accordionRef.current;
-    const imagePanel = imagePanelRef.current;
-    if (!accordion || !imagePanel) return;
-    const sync = () => { imagePanel.style.height = `${accordion.offsetHeight}px`; };
-    const ro = new ResizeObserver(sync);
-    ro.observe(accordion);
-    sync();
-    return () => ro.disconnect();
-  }, []);
-
-  const handleClick = (i: number) => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setActive(i);
-    setKey(k => k + 1);
-    setPaused(false);
-  };
-
   return (
     <section className="sva-outer">
       <h2 className="section-heading" style={{fontSize:'clamp(2.5rem,4.5vw,65px)',letterSpacing:'-1.3px'}}>The <em>work.</em></h2>
 
-      <div className="services-accordion-section">
-        {/* Left: image */}
-        <div ref={imagePanelRef} className="sva-image-panel">
-          {SERVICES.map((s, i) => (
-            <img
-              key={i}
-              src={s.image}
-              alt={s.title}
-              className={`sva-image${active === i ? ' sva-image--active' : ''}`}
-              style={s.focal ? { objectPosition: s.focal } : undefined}
-            />
-          ))}
+      <div className="work-blocks">
+        <div className="work-block reveal" id="individuals">
+          <div className="work-block-media">
+            <img src="/nancy-2.jpg" alt="Communication Clarity Advisory" style={{objectPosition:'left center'}} />
+          </div>
+          <div className="work-block-body">
+            <p className="work-block-label">For Individuals</p>
+            <h3 className="work-block-title">Communication Clarity Advisory</h3>
+            <p className="work-block-desc">1:1 strategic communication advisory for senior professionals preparing for the conversations that will define the next stage of their career. Board presentations. High-stakes interviews. Leadership transitions. Media appearances. Negotiations. This is a direct, private engagement — built around your specific situation, your patterns, and the room you are preparing to win.</p>
+            <Link href="/contact" className="service-cta">
+              Enquire about Advisory{' '}{ARROW}
+            </Link>
+          </div>
         </div>
 
-        {/* Right: accordion */}
-        <div
-          ref={accordionRef}
-          className="sva-accordion"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-        {SERVICES.map((s, i) => {
-          const isOpen = active === i;
-          return (
-            <div
-              key={i}
-              className={`sva-item${isOpen ? ' sva-item--open' : ''}`}
-              onClick={() => handleClick(i)}
-            >
-              {/* Progress stroke */}
-              <div className="sva-stroke-track">
-                {isOpen && (
-                  <div
-                    key={key}
-                    className="sva-stroke-fill"
-                    style={{ animationDuration: `${DURATION}ms`, animationPlayState: paused ? 'paused' : 'running' }}
-                  />
-                )}
-              </div>
-
-              <div className="sva-item-top">
-                <div className="sva-item-header">
-                  <h3 className="sva-item-title">{s.title}</h3>
-                </div>
-                <p className="sva-item-desc">{s.body}</p>
-              </div>
-
-              <Link href={s.cta.href} className="service-cta sva-item-cta" onClick={e => e.stopPropagation()}>
-                {s.cta.label}{' '}
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-              </Link>
-            </div>
-          );
-        })}
+        <div className="work-block reveal" id="organisations">
+          <div className="work-block-media">
+            <img src="/nancy-3.jpg" alt="Workshops, Training &amp; Speaking" style={{objectPosition:'right center'}} />
+          </div>
+          <div className="work-block-body">
+            <p className="work-block-label">For Organisations</p>
+            <h3 className="work-block-title">Workshops, Training &amp; Speaking</h3>
+            <p className="work-block-desc">For L&amp;D managers, HR directors and leadership teams who need their people to communicate with the clarity and authority their roles demand. Workshops, keynotes and training programmes that transfer immediately.</p>
+            <Link href="/contact" className="service-cta">
+              Enquire about Workshops &amp; Speaking{' '}{ARROW}
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function ContactForm() {
   const [form, setForm] = useState({
     firstName: '', lastName: '', email: '', organisation: '',
-    enquiryType: '', eventDate: '', budget: '', message: '',
+    enquiryType: '', message: '',
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
@@ -62,29 +62,11 @@ export default function ContactForm() {
         <label className="form-label">Enquiry Type</label>
         <select name="enquiryType" className="form-select" value={form.enquiryType} onChange={handleChange} required>
           <option value="" disabled>Select</option>
-          <option>Speaking</option>
-          <option>Moderation</option>
-          <option>Workshop</option>
           <option>Advisory</option>
-          <option>Media</option>
-          <option>General</option>
+          <option>Workshop or Training</option>
+          <option>Speaking or Moderation</option>
+          <option>Other</option>
         </select>
-      </div>
-      <div className="form-row">
-        <div className="form-group">
-          <label className="form-label">Event Date</label>
-          <input name="eventDate" type="date" className="form-input" value={form.eventDate} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label className="form-label">Budget</label>
-          <select name="budget" className="form-select" value={form.budget} onChange={handleChange}>
-            <option value="" disabled>Select</option>
-            <option>Under $5k</option>
-            <option>$5k–$10k</option>
-            <option>$10k–$25k</option>
-            <option>$25k+</option>
-          </select>
-        </div>
       </div>
       <div className="form-group">
         <label className="form-label">Message</label>
